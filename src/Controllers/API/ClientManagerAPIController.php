@@ -40,7 +40,7 @@ class ClientManagerAPIController extends Controller
 
     public function getTemplates($slug)
     {
-        $view_slug = 'rtdashboard::angular-templates.'.$slug;
+        $view_slug = 'rtclientmanager::angular-templates.'.$slug;
         if(\View::exists($view_slug)){
             return view($view_slug);
         }

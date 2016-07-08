@@ -12,7 +12,7 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
         });
 
         $path = __DIR__ . '/../../resources/views';
-        $this->loadViewsFrom($path,'rtdashboard');
+        $this->loadViewsFrom($path,'rtclientmanager');
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/rtclientmanager.php', 'rtclientmanager');
 

@@ -21,9 +21,9 @@ class ClientManagerController extends Controller
         $clients = \RTMatt\MonthlyService\Client::all();
 
         if(!view()->exists($master_layout)){
-            $master_layout = 'rtdashboard::layouts.admin';
+            $master_layout = 'rtclientmanager::layouts.admin';
         }
         $admin_mode=true;
-        return view('rtdashboard::manager.client-manager',compact('master_layout','clients','admin_mode'));
+        return view('rtclientmanager::manager.client-manager',compact('master_layout','clients','admin_mode'));
     }
 }
