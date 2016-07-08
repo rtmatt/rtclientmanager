@@ -54,9 +54,9 @@ class ClientServicesController extends Controller
 
     }
 
-
-    public function postIndex()
-    {
-        return "index put";
-    }
+//@todo: verify and remove
+    //public function postIndex()
+    //{
+    //    return "index put";
+    //}
 }
