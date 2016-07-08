@@ -84,7 +84,7 @@
 
 
     }]);
-    clientManagerApp.directive('dashboard', function ($http, $compile) {
+    clientManagerApp.directive('dashboard', function ($http, $compile,$timeout) {
         return {
             restrict: 'E',
             compile: function compile(tElement, tAttrs, transclude) {
@@ -116,14 +116,22 @@
             controller: function ($element, $scope) {
                 this.client_id = +$scope.client.id;
                 $scope.$on('dataLoaded', function () {
-                    $scope.client.dashboard_object.drawGraphs();
+                    var animationTimeout = $timeout(function(){
+                        $scope.client.dashboard_object.responsiveMonths();
+                        $scope.client.dashboard_object.drawGraphs();
+                    },150);
+                    $scope.$on('destroy',function(){
+                        $timeout.cancel(animationTimeout);
+                    })
+
                 });
                 var self=this;
 
                 this.bindListeners = function () {
                     $scope.client.dashboard_object = new ClientDashboard({
                         wrapper: 'js--Client-Dashboard_' + this.client_id,
-                        delay: true
+                        delay: true,
+                        id: this.client_id
                     });
                     this.backupTextNode = $element[0].querySelector('.js--Last-Backup-Text');
                 };
