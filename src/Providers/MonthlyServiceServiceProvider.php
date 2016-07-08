@@ -7,14 +7,14 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
     public function register()
     {
         $this->app->bind('\RTMatt\MonthlyService\Contracts\RTGuardContract', function ($app) {
-            $temp = config('monthlyserice.guard');
+            $temp = config('rtclientmanager.guard');
             return new $temp;
         });
 
         $path = __DIR__ . '/../../resources/views';
         $this->loadViewsFrom($path,'rtdashboard');
 
-
+        $this->mergeConfigFrom(__DIR__ . '/../../config/rtclientmanager.php', 'rtclientmanager');
 
 
     }
