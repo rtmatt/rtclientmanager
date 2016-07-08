@@ -11,7 +11,7 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
             return new $temp;
         });
 
-        $path = __DIR__ . '/../resources/views';
+        $path = __DIR__ . '/../../resources/views';
         $this->loadViewsFrom($path,'rtdashboard');
 
 
