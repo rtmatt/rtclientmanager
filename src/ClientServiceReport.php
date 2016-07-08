@@ -20,5 +20,6 @@ class ClientServiceReport
         $this->monthly     = $plan->getMonthlyReports();
         $this->description = $plan->getDescription();
         $this->annual      = $plan->getAnnualReport();
+        $this->client_id   = $plan->getClientID();
     }
 }

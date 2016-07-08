@@ -178,4 +178,9 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
         return;
     }
 
+
+    public function getClientID()
+    {
+       return $this->client_id;
+    }
 }

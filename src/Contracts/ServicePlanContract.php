@@ -14,4 +14,7 @@ interface ServicePlanContract
 
 
     public function getAnnualReport();
+
+
+    public function getClientID();
 }
