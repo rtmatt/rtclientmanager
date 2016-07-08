@@ -22,7 +22,9 @@ elixir(function (mix) {
         './resources/assets/js/vendor/angular.min.js',
         './resources/assets/js/vendor/moment.js',
         './resources/assets/js/vendor/datetimepicker.js',
-        './app/MonthlyService/resources/assets/js/client-manager/*.js'
+        //'./resources/assets/js/client-manager.js',
+        './resources/assets/js/client-manager/*.js',
+        './../rtclientdashboard/dist/js/dashboard.js'
     ], './dist/js/client-manager.js');
 
     /*

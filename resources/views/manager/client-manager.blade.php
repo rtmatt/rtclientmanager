@@ -110,8 +110,6 @@
 @endsection
 @section('footer')
     <script src="{{asset('js/client-manager.js')}}"></script>
-    <script src='/js/dashboard.js'></script>
-    <script>
-        new ClientManager('#js--RT-Client-Manager-Wrap');
-    </script>
+    {{--<script src='/js/dashboard.js'></script>--}}
+
 @endsection
