@@ -131,7 +131,8 @@
                     $scope.client.dashboard_object = new ClientDashboard({
                         wrapper: 'js--Client-Dashboard_' + this.client_id,
                         delay: true,
-                        id: this.client_id
+                        id: this.client_id,
+                        admin_mode:true
                     });
                     this.backupTextNode = $element[0].querySelector('.js--Last-Backup-Text');
                 };

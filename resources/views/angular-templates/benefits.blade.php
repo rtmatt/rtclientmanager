@@ -27,20 +27,20 @@
             <div class="col-sm-2">
                 <div ng-hide="benefitEdit.editMode">
                     <button type="button" ng-click="benefitEdit.delete()"
-                            class="btn btn-danger btn-block js--Monthly-Service-Benefit-Delete">
+                            class="RT-Dashboard-Form__button js--Monthly-Service-Benefit-Delete">
                         Delete
                     </button>
                     <button type="button" ng-click="benefitEdit.edit()"
-                            class="btm btn-info btn-block js--Monthly-Service-Benefit-Edit">Edit
+                            class="RT-Dashboard-Form__button js--Monthly-Service-Benefit-Edit">Edit
                     </button>
                 </div>
                 <div ng-show="benefitEdit.editMode">
                     <button type="button" ng-click="benefitEdit.save()"
-                            class="btn btn-danger btn-block js--Monthly-Service-Benefit-Delete">
+                            class="RT-Dashboard-Form__button js--Monthly-Service-Benefit-Delete">
                         Save
                     </button>
                     <button type="button" ng-click="benefitEdit.cancel()"
-                            class="btm btn-info btn-block js--Monthly-Service-Benefit-Edit">Cancel
+                            class="RT-Dashboard-Form__button js--Monthly-Service-Benefit-Edit">Cancel
                     </button>
                 </div>
             </div>
@@ -77,6 +77,6 @@
 
     <div class="clearfix text-center" ng-hide="benefitsController.addMode && !benefitsController.batch_edit">
         <button style="display:block;margin:30px auto;" ng-click="benefitsController.addBenefit()" type="button"
-                class="btn btn-primary">Add Monthly Service &plus;</button>
+                class="RT-Dashboard-Form__button">Add Monthly Service &plus;</button>
     </div>
 </section>

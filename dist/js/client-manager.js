@@ -4711,7 +4711,8 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                     $scope.client.dashboard_object = new ClientDashboard({
                         wrapper: 'js--Client-Dashboard_' + this.client_id,
                         delay: true,
-                        id: this.client_id
+                        id: this.client_id,
+                        admin_mode:true
                     });
                     this.backupTextNode = $element[0].querySelector('.js--Last-Backup-Text');
                 };
@@ -5526,6 +5527,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             return true;
         },
         __initializeTopLevelObjects: function () {
+            this.topLevelObjects=this.__setTopLevelObjects();
             for (var k = 0; k < this.topLevelObjects.length; k++) {
                 var key = this.topLevelObjects[k];
                 if (key == "wrapper") {
@@ -5542,6 +5544,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             this.toggleText = this.alertToggle.querySelector('.js--PriorityAlert-Toggle__text');
         },
         __allNecessaryObjectsLoaded: function () {
+            this.necessaryObjects = this.__setNecessaryObjects();
             for (var i = 0; i < this.necessaryObjects.length; i++) {
                 if (!this[this.necessaryObjects[i]]) {
                     console.log("Invalid " + this.necessaryObjects[i] + " provided.  Exiting.");
@@ -5576,8 +5579,8 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
 
                 var percent_ratio = month.dataset.percent_used / 100;
                 var wrapper_id = 'js--circle-' + i;
-                if(self.options.id!==null){
-                    wrapper_id+='--dashboard-'+self.options.id;
+                if (self.options.id !== null) {
+                    wrapper_id += '--dashboard-' + self.options.id;
                 }
 
                 this.graphs[i] = Circles.create({
@@ -5788,8 +5791,8 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             wrapper.insertBefore(alert, wrapper.firstChild);
             this.alertBlock = alert;
             $('html,body').animate({
-                scrollTop:$(wrapper).offset().top
-            },200);
+                scrollTop: $(wrapper).offset().top
+            }, 200);
 
 
         },
@@ -5870,7 +5873,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
                         //todo: disable submit button and display user feedback the form is working
                         $.ajax({
                             type: 'POST',
-                            url: self.options.api_base_url+'/api/client-service/priority-alert',
+                            url: self.options.api_base_url + '/api/client-service/priority-alert',
                             data: data,
                             contentType: false,
                             processData: false,
@@ -5901,7 +5904,9 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
 
 
             __attachModalListener();
-            __attachFormListener();
+            if(!self.options.admin_mode){
+                __attachFormListener();
+            }
 
         },
         updateMonth: function (month_index, percent, value) {
@@ -5929,16 +5934,32 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             alertSubmitButton: 'js--Alert-Submit-Button',
             modalTrigger: 'js--Modal-Trigger',
             modal: 'js--Modal',
-            api_base_url:'http://dashboard.dev',
-            id:null,
-            delay: false
+            api_base_url: 'http://dashboard.dev',
+            id: null,
+            delay: false,
+            admin_mode: false
         },
-        topLevelObjects: [
-            'wrapper', 'alertToggle', 'alertForm', 'alertFormForm', 'modalTrigger', 'modal', 'alertSubmitButton'
-        ],
-        necessaryObjects: [
-            'wrapper', 'alertForm', 'alertToggle', 'toggleIcon', 'toggleText', 'modalTrigger', 'modal'
-        ]
+        __setTopLevelObjects: function () {
+            if (this.options.admin_mode){
+                return [
+                    'wrapper', 'alertToggle', 'alertForm', 'modalTrigger', 'modal', 'alertSubmitButton'
+                ];
+            }
+            return [
+                'wrapper', 'alertToggle', 'alertForm', 'alertFormForm', 'modalTrigger', 'modal', 'alertSubmitButton'
+            ];
+
+        },
+        __setNecessaryObjects: function () {
+            if (this.options.admin_mode){
+                return [
+                    'wrapper', 'alertToggle', 'alertForm'
+                ];
+            }
+            return [
+                'wrapper', 'alertForm', 'alertToggle', 'toggleIcon', 'toggleText', 'modalTrigger', 'modal'
+            ];
+        }
     };
     window.ClientDashboard = ClientDashboard;
 }(window, document));
