@@ -106,7 +106,18 @@
     }
   }
 }
-
+.Client-Manager-Client__heading{
+  text-align: center;
+}
+.Client-Form__actions{
+  margin-top:30px;
+  > div:not(:first-child) .RT-Dashboard-Form__button{
+    margin-top:15px;
+    @media screen and (min-width:$tablet-portrait){
+        margin-top:0;
+    }
+  }
+}
 $fixed-client-breakpoint:1300px;
 .RT-Client-Manager__row{
   margin:0 -15px;
@@ -127,4 +138,8 @@ $fixed-client-breakpoint:1300px;
       width: percentage(10/12);
     }
   }
+}
+.RT-Dashboard-Form--add-client{
+  border-top:none;
+  display: block;
 }

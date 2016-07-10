@@ -6367,6 +6367,8 @@ textarea.parsley-error {
     color: #bbb; }
   .RT-Client_Dashboard .u--margin-top-20 {
     margin-top: 20px !important; }
+  .RT-Client_Dashboard .u--margin-top-30 {
+    margin-top: 30px !important; }
   .RT-Client_Dashboard .u--margin-top-0 {
     margin-top: 0 !important; }
   .RT-Client_Dashboard .clearfix::before, .RT-Client_Dashboard .clearfix::after {
@@ -6424,24 +6426,11 @@ textarea.parsley-error {
 .RT-Client_Dashboard {
   max-width: 1140px;
   margin: 0 auto 0 auto;
-  position: relative;
-  /* RESET
-   =============================================================================
-   * Reset unnecessary defaults we don't want
-   =========================================================================== */ }
+  position: relative; }
   .RT-Client_Dashboard * {
     box-sizing: border-box; }
     .RT-Client_Dashboard *:before, .RT-Client_Dashboard *:after {
       box-sizing: border-box; }
-  .RT-Client_Dashboard fieldset {
-    border: none;
-    padding: 0;
-    margin: 0; }
-    .RT-Client_Dashboard fieldset::before, .RT-Client_Dashboard fieldset::after {
-      content: " ";
-      display: table; }
-    .RT-Client_Dashboard fieldset::after {
-      clear: both; }
   .RT-Client_Dashboard .alert {
     padding: .25em;
     text-align: center;
@@ -6928,6 +6917,7 @@ textarea.parsley-error {
 =========================================================================== */
 .RT-Dashboard-Form {
   padding: 40px 25px;
+  display: none;
   color: #2f2f2f;
   background-color: #f1f1f1; }
   .RT-Dashboard-Form::before, .RT-Dashboard-Form::after {
@@ -6940,7 +6930,14 @@ textarea.parsley-error {
       border-top: 5px solid #d50000;
       padding: 55px 55px; } }
   .RT-Dashboard-Form fieldset {
-    margin-top: 45px; }
+    border: none;
+    padding: 0;
+    margin: 45px 0 0 0; }
+    .RT-Dashboard-Form fieldset::before, .RT-Dashboard-Form fieldset::after {
+      content: " ";
+      display: table; }
+    .RT-Dashboard-Form fieldset::after {
+      clear: both; }
   .RT-Dashboard-Form .error-block {
     clear: both; }
   .RT-Dashboard-Form .RT-Dashboard-Form__form-control {
@@ -7176,6 +7173,17 @@ textarea.parsley-error {
     .RT-Client-Manager .RT-Client-Manager__client-list li > a:hover {
       background: white; }
 
+.Client-Manager-Client__heading {
+  text-align: center; }
+
+.Client-Form__actions {
+  margin-top: 30px; }
+  .Client-Form__actions > div:not(:first-child) .RT-Dashboard-Form__button {
+    margin-top: 15px; }
+    @media screen and (min-width: 768px) {
+      .Client-Form__actions > div:not(:first-child) .RT-Dashboard-Form__button {
+        margin-top: 0; } }
+
 .RT-Client-Manager__row {
   margin: 0 -15px; }
   .RT-Client-Manager__row::before, .RT-Client-Manager__row::after {
@@ -7195,5 +7203,9 @@ textarea.parsley-error {
     .RT-Client-Manager__row .RT-Client-Manager__dashboards {
       float: left;
       width: 83.3333333333%; } }
+
+.RT-Dashboard-Form--add-client {
+  border-top: none;
+  display: block; }
 
 /*# sourceMappingURL=client-manager.css.map */

@@ -55,6 +55,9 @@
             }
 
         };
+        $scope.$on('cancelAddMode',function(){
+           self.destroy();
+        });
         this.destroy = function () {
             $scope.$parent.clientManager.addMode = false;
             self.formData = {};
@@ -71,6 +74,13 @@
         this.active_client_id = null;
         this.addClient = function () {
             this.addMode = true;
+        };
+        this.toggleAddMode = function(){
+            if(this.addMode){
+               $scope.$broadcast('cancelAddMode');
+                return;
+            }
+            this.addMode = !this.addMode;
         };
         this.isActiveClient = function (client_id) {
             return this.active_client_id == client_id;
@@ -181,7 +191,7 @@
     clientManagerApp.directive('fixedFill', ['$window', function ($window) {
         function setWidth(element) {
 
-            if (window.innerWidth >= 1200) {
+            if (window.innerWidth >= 1300) {
                 var parent_style = getComputedStyle(element.parentNode);
                 var parent_padding_left = parseInt(parent_style.paddingLeft);
                 var parent_padding_right = parseInt(parent_style.paddingRight);
