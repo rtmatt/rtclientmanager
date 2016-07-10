@@ -1,0 +1,20 @@
+{
+  "name": "rtmatt/rtclientmanager",
+  "require": {
+    "rtmatt/rtclientdashboard": "0.0.*"
+  },
+  "require-dev":{
+    "rtmatt/rtclientdashboard": "dev-master"
+  },
+  "authors": [
+    {
+      "name": "Matt Emrick",
+      "email": "matt@redtrainwebservices.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "RTMatt\\MonthlyService\\": "src"
+    }
+  }
+}

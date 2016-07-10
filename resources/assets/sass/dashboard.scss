@@ -1,0 +1,550 @@
+@import 'normalize';
+@import 'variables';
+@import 'priority-form';
+@import 'modal';
+@import 'parsley';
+
+
+// Development Styles
+.RT-Dashboard__Status-bar {
+  width: 95%;
+  margin: 0 auto 0 auto;
+  position: relative;
+}
+// End Development Styles
+
+.RT-Client_Dashboard{
+  .alert{
+    max-width: 1140px;
+    width: 95%;
+    padding:.25em;
+    text-align: center;
+    font-size:1.4em;
+    border:solid 1px transparent;
+    border-radius:.35em;
+    margin:0 auto;
+    ul{
+      list-style: none;
+    }
+    &.success{
+      border-color: #000000;
+      background-color: rgba(82, 255, 4, 0.08);
+
+
+    }
+  }
+}
+.RT-Dashboard__Status-bar {
+  position: relative;
+  background: $status-bar-bg;
+  max-width: 1140px;
+  font-size: 12px;
+  font-size: .6rem;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+  * {
+    box-sizing: border-box;
+
+    &:before, &:after {
+      box-sizing: border-box;
+    }
+  }
+
+  .DashboardIconLabel {
+    display: inline-block;
+    margin-top: 20px;
+
+    @media screen and (min-width: $tablet-portrait) {
+      margin-top: 0px;
+    }
+
+    &--secondary-content {
+      margin-top: 0px;
+    }
+
+    &--padding-left-tablet-min {
+      @media screen and (min-width: $tablet-portrait) {
+        padding-left: 5px;
+      }
+    }
+  }
+
+  .DashboardIconLabel__icon,
+  .DashboardIconLabel__text {
+    float: left;
+    display: block;
+  }
+
+  .DashboardIconLabel__icon {
+    @media screen and (min-width: $md-desktop) {
+      &--priority {
+        float: none;
+        margin: 0 auto 5px auto;
+      }
+
+    }
+  }
+
+  .DashboardIconLabel__text {
+    margin-top: 4px;
+    margin-left: 10px;
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: .05em;
+    text-align: left;
+    line-height: 1;
+
+    @media screen and (min-width: $tablet-portrait) {
+      margin-top: 3px;
+
+      br {
+        display: block;
+      }
+    }
+
+    &--backup {
+      margin-top: 5px;
+
+      @media screen and (min-width: $md-desktop) {
+        margin-left: 0;
+      }
+    }
+
+    &--services {
+      margin-top: 0px;
+
+      @media screen and (min-width: $tablet-portrait) {
+        margin-top: 5px;
+
+        br {
+          display: none;
+        }
+      }
+
+      @media screen and (min-width: $md-desktop) {
+
+        margin-left: 0;
+        text-align: center;
+
+        br {
+          display: block;
+        }
+      }
+    }
+
+    &--priority {
+      margin-top: 7px;
+
+      @media screen and (min-width: $tablet-portrait) {
+        margin-top: 8px;
+      }
+
+      @media screen and (min-width: $md-desktop) {
+        text-align: center;
+        margin: 0;
+      }
+    }
+  }
+
+  .BrandBar {
+    width: 100%;
+    height: 25px;
+    padding: 5px 0 0 5px;
+    display: block;
+    background: no-repeat 5px center $dark-grey;
+    background-image: url('../images/dl-logo-white.png');
+    -webkit-transition: background-image 0.3s ease;
+    transition: background-image 0.3s ease;
+
+    &:hover {
+      background-image: url('../images/dl-logo-green.png');
+    }
+
+    @media screen and (min-width: $tablet-portrait) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 25px;
+      height: 100%;
+      background-position: center 5px;
+    }
+  }
+
+  .StatusBarContent {
+    @media screen and (min-width: $tablet-portrait) {
+      padding-left: 25px;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      padding-right: 80px;
+    }
+  }
+
+
+
+  /* UsageContent
+  =============================================================================
+  * Wrapper for monthly and annual content
+  =========================================================================== */
+  .UsageContent {
+    @media screen and (min-width: $tablet-portrait) {
+      padding-left: 10px;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      width: 83.5%;
+      float: left;
+    }
+  }
+
+  .UsageContent__row {
+    @media screen and (min-width: $tablet-portrait) {
+    }
+  }
+
+  .UsageContent__label {
+    text-align: center;
+    margin: 10px 0 20px 0;
+
+    @media screen and (min-width: $tablet-portrait) {
+      width: 11.7%;
+
+      &--monthly {
+        margin-top: 35px;
+      }
+
+      &--yearly {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  .UsageContent__content {
+    @media screen and (min-width: $tablet-portrait) {
+      width: 88.3%;
+    }
+  }
+
+  .MonthWrap {
+    width: 95%;
+    max-width: 450px;
+    margin: 0 auto;
+
+    @media screen and (min-width: $tablet-portrait) {
+      max-width: none;
+      margin: 0 0 0 15px;
+    }
+  }
+
+  .month {
+    width: 16.6666%;
+    display: block;
+    float: left;
+    padding: 10px 10px 0 10px;
+
+    @media screen and (min-width: $tablet-portrait) {
+      width: 8.3333%;
+      padding: 10px 6px 0 6px;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+
+    }
+  }
+
+  .month:nth-child(7) {
+    clear: both;
+
+    @media screen and (min-width: $tablet-portrait) {
+      clear: none;
+    }
+  }
+  .Month-Graph-Wrap{
+    text-align: center;
+  }
+  // Monthly hour numbers
+  .progressbar-text {
+    font-size: 14px;
+//    padding-bottom: 2px;
+//    transform: translate(-50%, -60%) !important;
+  }
+
+  // Selects last 6 months
+  .month:nth-child(n+7) {
+    margin: 10px 0 0 0;
+
+    @media screen and (min-width: $tablet-portrait) {
+      margin: 0;
+    }
+  }
+
+  .current-month {
+    background: $current-month-bg;
+    border-radius: 0 0 50% 50% / 35%;
+    padding-bottom: 8px;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+
+    @media screen and (min-width: $tablet-portrait) {
+      padding-bottom: 4px;
+    }
+  }
+
+  .month-name {
+    display: block;
+    text-align: center;
+    color: #929292;
+    text-transform: uppercase;
+    font-size: 8px;
+    margin: 0 0 5px 0;
+  }
+
+
+
+  // ANNUAL BALANCE BAR
+  .AnnualWrap {
+    background: red;
+    width: 90%;
+    max-width: 420px;
+    margin: 0 auto 30px auto;
+    position: relative;
+    background-color: $stroke-tail-grey;
+    border-radius: 5px;
+
+    @media screen and (min-width: $tablet-portrait) {
+      margin: 15px auto 0 auto;
+      width: 93%;
+      max-width: none;
+    }
+  }
+
+  .CurrentHourBalance,
+  .TotalAnnualHours {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    padding-top: 7px;
+    position: absolute;
+    text-align: center;
+  }
+
+  .TotalAnnualHours__total {
+    font-size: 11px;
+    line-height: .9em;
+  }
+
+  .CurrentHourBalance {
+    background-color: $current-month-bg;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    transition: left 1s ease;
+    z-index: 10;
+  }
+
+  .CurrentHourBalance__balance {
+    font-size: 12px;
+    line-height: 1em;
+  }
+
+  .TotalAnnualHours {
+    background-color: $stroke-tail-grey;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    z-index: 1;
+  }
+
+  .BalanceBar {
+    background: $status-bar-green;
+    width: 0;
+    height: 8px;
+    border-radius: 5px;
+    transition: width 1s ease;
+  }
+
+
+
+  /* StatusBarSecondaryContent
+  =============================================================================
+  * Last backup
+  * Monthly services
+  * Priority Alert toggle button
+  =========================================================================== */
+  .StatusBarSecondaryContent {
+    @media screen and (min-width: $tablet-portrait) {
+
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      float: right;
+      width: 14.5%;
+    }
+  }
+
+  .StatusBarSecondaryInformation {
+    @media screen and (min-width: $tablet-portrait) {
+      width: 70.2%;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      width: 100%;
+    }
+  }
+
+  .StatusBarSecondaryInformation__item {
+    width: 50%;
+    float: left;
+    background-color: $stroke-tail-grey;
+    color: #a7a7a7;
+    font-size: 9px;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6.5px 0;
+
+    &:first-child {
+      border-right: 1px solid $status-bar-bg;
+    }
+
+    &:last-child {
+      border-left: 1px solid $status-bar-bg;
+      padding: 17px 0 13px 0 !important;
+    }
+
+    @media screen and (min-width: $tablet-portrait) {
+      &:last-child {
+        padding: 6.5px 0 !important;
+      }
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      float: none;
+      width: 100%;
+
+      &:first-child {
+        border-right: none;
+        border-bottom: 1px solid $status-bar-bg;
+        padding: 10px 0 !important;
+      }
+
+      &:last-child {
+        border-left: none;
+        border-top: 1px solid $status-bar-bg;
+        padding: 10.5px 0 !important;
+      }
+    }
+
+    &--services {
+      padding: 12.5px 0;
+      background-color: $stroke-tail-grey;
+      transition: background-color 0.3s ease,
+      color 0.3s ease;
+      display: block;
+
+      @media screen and (min-width: $tablet-portrait) {
+        padding: 6.5px;
+      }
+
+      &:hover {
+        background-color: $status-bar-green;
+        color: #ffffff;
+      }
+    }
+  }
+
+  .StatusBarSecondaryInformation__item-text {
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #353535;
+
+    @media screen and (min-width: $tablet-portrait) {
+      float: left;
+      padding: 0 0 0 10px;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      padding: 0;
+      font-size: 10px;
+    }
+  }
+
+  .StatusBarAlertButton {
+    display: block;
+    text-align: center;
+    background-color: $dark-grey;
+    color: #efefef;
+    padding: 12px 0;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background-color: $dark-red;
+    }
+
+    @media screen and (min-width: $tablet-portrait) {
+      width: 29.8%;
+      padding: 5px;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      position: absolute;
+      right: 0;
+      height: 100%;
+      width: 80px;
+    }
+
+    &--button-active {
+      background-color: $dark-red;
+    }
+  }
+
+
+
+  /* UTILITY CLASSES
+  ============================================================================
+  *
+  ========================================================================== */
+  .u--float-left-tablet-portrait-min {
+    @media screen and (min-width: $tablet-portrait) {
+      float: left !important;
+    }
+  }
+
+  .u--inline-block {
+    display: inline-block;
+  }
+
+  .u--remove-float-desktop {
+    @media screen and (min-width: $md-desktop) {
+      float: none !important;
+    }
+  }
+
+  .u--margin-auto-desktop {
+    @media screen and (min-width: $md-desktop) {
+      margin: 0 auto;
+    }
+  }
+
+  .u--full-center-desktop {
+    @media screen and (min-width: $md-desktop) {
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  .clearfix {
+    &:before, &:after {
+      content: " "; // 1
+      display: table; // 2
+    }
+
+    &:after {
+      clear: both;
+    }
+  }
+
+}

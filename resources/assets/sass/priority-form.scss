@@ -1,0 +1,359 @@
+/* PRIORITY ALERT FORM
+===========================================================================
+======================================================================== */
+// Development Styles
+.RT-Dashboard__Priority-form {
+  width: 95%;
+  margin: 0 auto 10px auto;
+}
+// End Development Styles
+
+
+.RT-Dashboard__Priority-form {
+  max-width: 1140px;
+  padding: 40px 25px;
+  color: #2f2f2f;
+  background-color: $status-bar-bg;
+  clear: both;
+  box-sizing: border-box;
+  display: none;
+  font-size: 12px;
+  font-size: .6rem;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Helvetica Neue Bold", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+
+  * {
+    box-sizing: border-box;
+
+    &:before, &:after {
+      box-sizing: border-box;
+    }
+  }
+
+  & input, textarea {
+    outline: 0;
+  }
+
+  @media screen and (min-width: $md-desktop) {
+    border-top: 5px solid $dark-red;
+    padding: 80px 55px;
+  }
+
+  .PriorityAlertForm__submit-button {
+    background: #2f2f2f;
+    width: 100%;
+    margin: 20px 0 0 0;
+    color: #fff;
+    padding: 14.5px 50px;
+    border: 0;
+    font-size: 10px;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+    -webkit-transition: background 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background: #d50000;
+    }
+
+    @media screen and (min-width: $md-desktop) {
+      width: 50%;
+      float: right;
+    }
+    &:disabled{
+      background:rgba(#2f2f2f,.75);
+    }
+  }
+
+  .AlertIssueTitle {
+    font-size: 16px;
+    color: $dark-grey;
+    display: block;
+    margin: 0 0 10px 0;
+  }
+
+
+
+
+  /* AlertFormIssueCol
+  =============================================================================
+  * Wrapper for alert information
+  =========================================================================== */
+  .AlertFormIssueCol {
+
+    @media screen and (min-width: $md-desktop) {
+      float: left;
+      width: 60%;
+      border-right: 3px solid $stroke-tail-grey;
+      padding-right: 50px;
+    }
+  }
+
+  // ISSUE DESCRIPTION
+  .AlertFormIssueCol__description {
+
+  }
+
+  .AlertFormIssueCol__description-col {
+    width: 100%;
+  }
+
+  .AlertFormIssueCol__description-col-wrapper {
+    width: 100%;
+
+    @media screen and (min-width: $md-desktop) {
+      width: 50%;
+      float: left;
+    }
+
+    &--padding-right {
+      @media screen and (min-width: $md-desktop) {
+        padding-right: 8px;
+      }
+    }
+
+    &--padding-left {
+      @media screen and (min-width: $md-desktop) {
+        padding-left: 8px;
+      }
+    }
+  }
+
+  .AlertFormIssueCol__description-col-textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    font-size: 11px;
+    padding: 15px 20px;
+    resize: none;
+    transition: all 0.5s ease;
+  }
+
+  .AlertFormIssueCol__description-col:first-child {
+    margin: 0 0 20px 0;
+  }
+
+  // ISSUE FREQUENCY
+  .AlertFormIssueCol__frequency {
+
+  }
+
+  .AlertFormIssueCol__frequency-options {
+    @media screen and (min-width: $tablet-portrait) {
+      margin: 0 -7px;
+    }
+  }
+
+  .AlertFormIssueCol__frequency-options-wrapper {
+    position: relative;
+    @media screen and (min-width: $tablet-portrait) {
+      width: 25%;
+      padding: 0 7px;
+      float: left;
+    }
+  }
+
+  .AlertFormIssueCol__frequency-options-option {
+    position: absolute;
+    opacity: 0;
+    top:0;
+    left:0;
+    z-index: 100;
+  }
+
+  .AlertFormIssueCol__frequency-options-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    background-color: $stroke-tail-grey;
+    cursor: pointer;
+    z-index: 90;
+    margin: 0 0 10px 0;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: block;
+    padding: 15px 0;
+
+    &:hover {
+      background-color: #ccc;
+    }
+
+  }
+
+  .AlertFormIssueCol__frequency-options-option:checked + label, .Checked + label {
+    background: #9bd500;
+    color: #fff;
+  }
+
+  // ISSUE SPECS
+  .AlertFormIssueCol__specs {
+  }
+
+  .AlertFormIssueCol__specs-options {
+    @media screen and (min-width: $tablet-portrait) {
+      margin: 0 -7px;
+    }
+  }
+
+  .AlertFormIssueCol__specs-options-wrapper {
+    @media screen and (min-width: $tablet-portrait) {
+      width: 33.3333%;
+      padding: 0 7px;
+      float: left;
+    }
+  }
+
+  .AlertFormIssueCol__specs-input,
+  .AlertFormIssueCol__specs-detect {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    margin: 0 0 10px 0;
+
+    @media screen and (min-width: $md-desktop) {
+      margin: 0 0 14px 0;
+    }
+  }
+
+  .AlertFormIssueCol__specs-input {
+    padding: 15px;
+    background: #fff;
+    border: 0;
+    font-size: 11px;
+  }
+
+  .AlertFormIssueCol__specs-input {
+    &::-webkit-input-placeholder,&:-ms-input-placeholder {
+      color: #bbb;
+    }
+  }
+
+  .AlertFormIssueCol__specs-detect {
+    text-transform: uppercase;
+    border: none;
+    font-size: 9px;
+    background-color: $dark-grey;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      background-color: $dark-red;
+    }
+  }
+
+  // ISSUE SCREENSHOT UPLOAD
+  .AlertFormIssueCol__screenshot {
+
+  }
+
+  .AlertFormIssueCol__screenshot-input {
+    width: 100%;
+    margin: 0 0 10px 0;
+    padding: 15px 20px;
+    font-size: 11px;
+    background: #dfdfdf;
+    cursor: pointer;
+    text-align: left;
+  }
+
+
+
+
+  /* AlertFormContactCol
+  =============================================================================
+  * Wrapper for user's contact information
+  =========================================================================== */
+  .AlertFormContactCol {
+
+    @media screen and (min-width: $md-desktop) {
+      float: left;
+      width: 40%;
+      padding-left: 50px;
+      margin-top: 20px;
+    }
+  }
+
+  // USER CONTACT INFO
+  .AlertFormContactCol__user-info {
+
+  }
+
+  .AlertFormIssueCol__user-info-wrapper {
+    @media screen and (min-width: $md-desktop) {
+      display: block;
+    }
+  }
+
+  .AlertFormContactCol__user-info-label {
+    font-size: 9px;
+    display: block;
+    margin: 0 0 5px 0;
+    text-transform: uppercase;
+
+    @media screen and (min-width: $md-desktop) {
+      float: left;
+      line-height: 45px;
+    }
+  }
+
+  .AlertFormContactCol__user-info-input {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    margin: 0 0 15px 0;
+    font-size: 11px;
+    padding: 15px;
+    border: 0;
+
+    @media screen and (min-width: $md-desktop) {
+      float: right;
+      width: 82%;
+    }
+  }
+
+  // ADDITIONAL INFORMATION
+  .AlertFormContactCol__additional-info {
+
+  }
+
+  .AlertFormContactCol__additional-info-textarea {
+    width: 100%;
+    height: 100px;
+    border: none;
+    font-size: 11px;
+    padding: 15px 20px;
+    resize: none;
+  }
+
+
+
+  /* UTILITY CLASSES
+  ============================================================================
+  *
+  ========================================================================== */
+  .u--bottom-margin-50-mobile-min {
+    margin-bottom: 50px;
+  }
+
+  .u--bottom-margin-25-mobile-min {
+    margin-bottom: 10px;
+  }
+
+  .u--light-text {
+    color: #bbb;
+  }
+
+
+} // END .RT-Dashboard__Priority-form
+
+.clearfix {
+  &:before, &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+
+  &:after {
+    clear: both;
+  }
+}
