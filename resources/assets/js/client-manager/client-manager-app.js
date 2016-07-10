@@ -78,9 +78,13 @@
         this.toggleAddMode = function(){
             if(this.addMode){
                $scope.$broadcast('cancelAddMode');
+                this.addButtonText="Add";
+                this.addButtonClass="info";
                 return;
             }
             this.addMode = !this.addMode;
+            this.addButtonText="Cancel";
+            this.addButtonClass="warning";
         };
         this.isActiveClient = function (client_id) {
             return this.active_client_id == client_id;
@@ -96,6 +100,9 @@
             }, 300);
             this.active_client_id = id;
         };
+
+        this.addButtonText="Add";
+        this.addButtonClass="info";
 
 
     }]);

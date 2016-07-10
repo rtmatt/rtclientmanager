@@ -4658,9 +4658,13 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
         this.toggleAddMode = function(){
             if(this.addMode){
                $scope.$broadcast('cancelAddMode');
+                this.addButtonText="Add";
+                this.addButtonClass="info";
                 return;
             }
             this.addMode = !this.addMode;
+            this.addButtonText="Cancel";
+            this.addButtonClass="warning";
         };
         this.isActiveClient = function (client_id) {
             return this.active_client_id == client_id;
@@ -4676,6 +4680,9 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             }, 300);
             this.active_client_id = id;
         };
+
+        this.addButtonText="Add";
+        this.addButtonClass="info";
 
 
     }]);

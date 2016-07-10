@@ -17,7 +17,7 @@
                             </a>
                         </li>
                     </ul>
-                    <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--info" ng-click="clientManager.toggleAddMode()">Add</button>
+                    <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--@{{ clientManager.addButtonClass }}" ng-click="clientManager.toggleAddMode()">@{{ clientManager.addButtonText }}</button>
                 </div>
             </div>
             <div class="RT-Client-Manager__dashboards">
