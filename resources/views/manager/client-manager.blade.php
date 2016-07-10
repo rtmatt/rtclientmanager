@@ -1,6 +1,6 @@
 @extends($master_layout)
 @section('content')
-    <link href='/css/dashboard.css' rel='stylesheet'>
+
     <link href='/css/client-manager.css' rel='stylesheet'>
     <style>
         .RT-Client-Manager .Dashboard-Loading {

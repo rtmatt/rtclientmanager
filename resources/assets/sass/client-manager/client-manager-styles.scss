@@ -1,5 +1,33 @@
-.RT-Dashboard-Form{
-  &--admin{
+.RT-Dashboard-Form {
+  &--admin {
 
+  }
+  textarea.RT-Dashboard-Form__form-control--textarea-2-tall {
+    height: 128px;
+  }
+  .RT-Dashboard-Form__button {
+    &:not(.RT-Dashboard-Form__button-inline) {
+      display: block;
+      width: 100%;
+    }
+    + .RT-Dashboard-Form__button:not(:first-child) {
+      margin-top: 15px;
+    }
+    &.RT-Dashboard-Form__button--center-block {
+      @media screen and (min-width: $screen-sm-min) {
+        max-width: 25%;
+      }
+      margin: 0 auto;
+    }
+  }
+  .Monthly-Service {
+    &:last-child {
+      > hr {
+        display: none;
+      }
+    }
+  }
+  .Monthly-Service__heading {
+    margin-top: 0;
   }
 }
