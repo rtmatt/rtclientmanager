@@ -31,3 +31,100 @@
     margin-top: 0;
   }
 }
+.RT-Client-Manager{
+  padding: 0 15px;
+}
+
+.RT-Client-Manager .Dashboard-Loading {
+  width: 1142px;
+  margin: 0 auto;
+  height: 142px;
+  position: relative;
+}
+
+.RT-Client-Manager .Dashboard-Loading .Dashboard-Loading__image {
+  display: block;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.RT-Client-Manager {
+
+  .Client-Wrap {
+    background: $status-bar-bg;
+    padding:20px 20px;
+    .Client-Wrap__header{
+      padding-bottom: 20px;
+      h2 {
+        margin:0;
+      }
+
+    }
+    .RT-Dashboard-Form__button {
+      display: block;
+      width:100%;
+      margin-top:15px;
+
+    }
+
+
+  }
+  .RT-Client-Manager__client-list {
+    list-style: none;
+    padding: 3px;
+    background: #DFDFDF;
+    li {
+
+      &:not(:first-child) {
+        margin-top: 3px;
+      }
+
+      &.active {
+        a {
+          background: #FAFAFA;
+          box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px;
+        }
+      }
+
+      > a {
+        padding: 7px 15px;
+        background: $status-bar-bg;
+        color: $dark-grey;
+        display: block;
+        transition: color .3s ease, background-color .3s ease;
+        cursor: pointer;
+        &, &:hover {
+          text-decoration: none;
+        }
+        &:hover {
+          background: lighten($status-bar-bg, 40%);
+        }
+      }
+    }
+  }
+}
+
+$fixed-client-breakpoint:1300px;
+.RT-Client-Manager__row{
+  margin:0 -15px;
+  @include clearfix;
+  > div{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  @media screen and (min-width:$fixed-client-breakpoint){
+    .RT-Client-Manager__clients{
+      float:left;
+      width: percentage(2/12);
+    }
+    .RT-Client-Manager__dashboards{
+      float:left;
+      width: percentage(10/12);
+    }
+  }
+}

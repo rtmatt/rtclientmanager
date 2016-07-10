@@ -2,36 +2,25 @@
 @section('content')
 
     <link href='/css/client-manager.css' rel='stylesheet'>
-    <style>
-        .RT-Client-Manager .Dashboard-Loading {
-            width:1142px;margin:0 auto;height:142px;position: relative;
-        }
-        .RT-Client-Manager .Dashboard-Loading .Dashboard-Loading__image{
-            display: block;
-            margin: 0 auto;
-            top: 50%;
-            transform: translateY(-50%);
-            transform-style: preserve-3d;
-            position: relative;
-        }
-    </style>
     <div class="RT-Client-Manager" id="js--RT-Client-Manager-Wrap" ng-app="client-manager-app">
-        <div class="row-fluid" ng-controller="clientManagerController as clientManager">
-            <div class="col-lg-2">
-                <div class="Client-Wrap" style="position: fixed;">
-                <legend>Clients<button class="btn btn-primary"  style="margin-left:20px;" ng-click="clientManager.addClient()">Add</button></legend>
+        <div class="RT-Client-Manager__row" ng-controller="clientManagerController as clientManager">
+            <div class="RT-Client-Manager__clients">
+                <div class="Client-Wrap" fixed-fill>
+                    <div class="Client-Wrap__header clearfix">
+                        <h2>Clients</h2>
 
-                <ul class="nav nav-pills nav-stacked">
-                    <li ng-repeat="client in clients">
-                        <a ng-click="clientManager.selectActiveClient(client.id)">
-                            @{{ client.name }}
-                        </a>
-                    </li>
-                    <li> </li>
-                </ul>
+                    </div>
+                    <ul class="RT-Client-Manager__client-list">
+                        <li ng-repeat="client in clients" ng-class="{active:clientManager.isActiveClient(client.id)}">
+                            <a ng-click="clientManager.selectActiveClient(client.id)">
+                                @{{ client.name }}
+                            </a>
+                        </li>
+                    </ul>
+                    <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--info" ng-click="clientManager.addClient()">Add</button>
                 </div>
             </div>
-            <div class="col-lg-10">
+            <div class="RT-Client-Manager__dashboards">
                 <div ng-show="clientManager.addMode">
                     <h2>Add Client</h2>
                     <div>

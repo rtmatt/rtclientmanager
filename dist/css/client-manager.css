@@ -7126,4 +7126,74 @@ textarea.parsley-error {
 .RT-Dashboard-Form .Monthly-Service__heading {
   margin-top: 0; }
 
+.RT-Client-Manager {
+  padding: 0 15px; }
+
+.RT-Client-Manager .Dashboard-Loading {
+  width: 1142px;
+  margin: 0 auto;
+  height: 142px;
+  position: relative; }
+
+.RT-Client-Manager .Dashboard-Loading .Dashboard-Loading__image {
+  display: block;
+  margin: 0 auto;
+  top: 50%;
+  transform: translateY(-50%);
+  transform-style: preserve-3d;
+  position: relative; }
+
+.RT-Client-Manager .Client-Wrap {
+  background: #f1f1f1;
+  padding: 20px 20px; }
+  .RT-Client-Manager .Client-Wrap .Client-Wrap__header {
+    padding-bottom: 20px; }
+    .RT-Client-Manager .Client-Wrap .Client-Wrap__header h2 {
+      margin: 0; }
+  .RT-Client-Manager .Client-Wrap .RT-Dashboard-Form__button {
+    display: block;
+    width: 100%;
+    margin-top: 15px; }
+
+.RT-Client-Manager .RT-Client-Manager__client-list {
+  list-style: none;
+  padding: 3px;
+  background: #DFDFDF; }
+  .RT-Client-Manager .RT-Client-Manager__client-list li:not(:first-child) {
+    margin-top: 3px; }
+  .RT-Client-Manager .RT-Client-Manager__client-list li.active a {
+    background: #FAFAFA;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 1px 1px; }
+  .RT-Client-Manager .RT-Client-Manager__client-list li > a {
+    padding: 7px 15px;
+    background: #f1f1f1;
+    color: #2f2f2f;
+    display: block;
+    transition: color .3s ease, background-color .3s ease;
+    cursor: pointer; }
+    .RT-Client-Manager .RT-Client-Manager__client-list li > a, .RT-Client-Manager .RT-Client-Manager__client-list li > a:hover {
+      text-decoration: none; }
+    .RT-Client-Manager .RT-Client-Manager__client-list li > a:hover {
+      background: white; }
+
+.RT-Client-Manager__row {
+  margin: 0 -15px; }
+  .RT-Client-Manager__row::before, .RT-Client-Manager__row::after {
+    content: " ";
+    display: table; }
+  .RT-Client-Manager__row::after {
+    clear: both; }
+  .RT-Client-Manager__row > div {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px; }
+  @media screen and (min-width: 1300px) {
+    .RT-Client-Manager__row .RT-Client-Manager__clients {
+      float: left;
+      width: 16.6666666667%; }
+    .RT-Client-Manager__row .RT-Client-Manager__dashboards {
+      float: left;
+      width: 83.3333333333%; } }
+
 /*# sourceMappingURL=client-manager.css.map */

@@ -5,13 +5,13 @@
         //@todo: configure middleware and auth for API
         // $httpProvider.defaults.headers.common.Authorization = 'Basic cmlkZWl0';
     });
-    clientManagerApp.controller('clientDashboardsController', ['$scope', '$interval', 'benefitFactory',function ($scope, $interval,benefitFactory) {
+    clientManagerApp.controller('clientDashboardsController', ['$scope', '$interval', 'benefitFactory', function ($scope, $interval, benefitFactory) {
 
         var self = this;
         var client = $scope.client;
         self.loaded = false;
         window.Benefit = benefitFactory.new({
-            name:'benegit',
+            name: 'benegit',
             description: "desc"
         });
         console.log(window.Benefit);
@@ -27,23 +27,23 @@
         }
     }]);
 
-    clientManagerApp.controller('clientAddController',['$scope','$http','clientFactory','clientCollection',function($scope,$http,clientFactory,clientCollection){
-        var self=this;
+    clientManagerApp.controller('clientAddController', ['$scope', '$http', 'clientFactory', 'clientCollection', function ($scope, $http, clientFactory, clientCollection) {
+        var self = this;
         this.submitted = false;
-        this.cancel = function(){
+        this.cancel = function () {
             self.destroy();
         };
 
-        $scope.benefits_batch=true;
-        this.save = function(formObj){
+        $scope.benefits_batch = true;
+        this.save = function (formObj) {
             this.submitted = true;
-            if($scope.clientAddForm.$valid){
-                this.formData.start_date =this.formData.date.unix();
-                $http.post('/api/client-manager/clients/',this.formData).then(function(response){
+            if ($scope.clientAddForm.$valid) {
+                this.formData.start_date = this.formData.date.unix();
+                $http.post('/api/client-manager/clients/', this.formData).then(function (response) {
                     var client = response.data.client;
-                    var client_obj = clientFactory.new(client.id,client.name,function(){
-                        clientCollection.add(client_obj,function(){
-                            $scope.$broadcast('newClientAdded',client_obj,function(result){
+                    var client_obj = clientFactory.new(client.id, client.name, function () {
+                        clientCollection.add(client_obj, function () {
+                            $scope.$broadcast('newClientAdded', client_obj, function (result) {
                                 console.log('running callback');
                                 client_obj.service_plan.benefits = result;
                             });
@@ -55,9 +55,9 @@
             }
 
         };
-        this.destroy = function(){
-            $scope.$parent.clientManager.addMode=false;
-            self.formData={};
+        this.destroy = function () {
+            $scope.$parent.clientManager.addMode = false;
+            self.formData = {};
             $scope.clientAddForm.$setPristine();
             $scope.clientAddForm.$setSubmitted();
             this.submitted = false;
@@ -68,8 +68,12 @@
         //END TEMP TESTING
         $scope.loading = true;
         this.addMode = false;
-        this.addClient = function(){
-          this.addMode=true;
+        this.active_client_id = null;
+        this.addClient = function () {
+            this.addMode = true;
+        };
+        this.isActiveClient = function (client_id) {
+            return this.active_client_id == client_id;
         };
         clientCollection.initialize(function () {
             $scope.clientCollection = clientCollection;
@@ -80,11 +84,12 @@
             $("html, body").animate({
                 scrollTop: section.offsetTop
             }, 300);
+            this.active_client_id = id;
         };
 
 
     }]);
-    clientManagerApp.directive('dashboard', function ($http, $compile,$timeout) {
+    clientManagerApp.directive('dashboard', function ($http, $compile, $timeout) {
         return {
             restrict: 'E',
             compile: function compile(tElement, tAttrs, transclude) {
@@ -116,23 +121,23 @@
             controller: function ($element, $scope) {
                 this.client_id = +$scope.client.id;
                 $scope.$on('dataLoaded', function () {
-                    var animationTimeout = $timeout(function(){
+                    var animationTimeout = $timeout(function () {
                         $scope.client.dashboard_object.responsiveMonths();
                         $scope.client.dashboard_object.drawGraphs();
-                    },150);
-                    $scope.$on('destroy',function(){
+                    }, 150);
+                    $scope.$on('destroy', function () {
                         $timeout.cancel(animationTimeout);
                     })
 
                 });
-                var self=this;
+                var self = this;
 
                 this.bindListeners = function () {
                     $scope.client.dashboard_object = new ClientDashboard({
                         wrapper: 'js--Client-Dashboard_' + this.client_id,
                         delay: true,
                         id: this.client_id,
-                        admin_mode:true
+                        admin_mode: true
                     });
                     this.backupTextNode = $element[0].querySelector('.js--Last-Backup-Text');
                 };
@@ -140,12 +145,12 @@
                     this.backupTextNode.innerText = s;
                 };
                 this.logBackup = function () {
-                    var url = "/api/client-manager/service-plan/"+$scope.client.service_plan.id+"/backup";
+                    var url = "/api/client-manager/service-plan/" + $scope.client.service_plan.id + "/backup";
                     this.replaceBackupText('Saving...');
-                    $http.put(url,{
+                    $http.put(url, {
                         timestamp: Date.now()
-                    }).then(function(response){
-                       var newTime = response.data.backup_datetime;
+                    }).then(function (response) {
+                        var newTime = response.data.backup_datetime;
                         self.replaceBackupText(newTime);
                     });
                 }
@@ -173,13 +178,43 @@
         };
     });
 
+    clientManagerApp.directive('fixedFill', ['$window', function ($window) {
+        function setWidth(element) {
+
+            if (window.innerWidth >= 1200) {
+                var parent_style = getComputedStyle(element.parentNode);
+                var parent_padding_left = parseInt(parent_style.paddingLeft);
+                var parent_padding_right = parseInt(parent_style.paddingRight);
+
+                var width = element.parentNode.offsetWidth - ( parent_padding_left + parent_padding_right);
+                element.style.width = width + "px";
+                element.style.position = 'fixed';
+                return;
+            }
+            element.style.width = "auto"
+            element.style.position = 'relative';
+
+        }
+
+        return {
+            restrict: 'A',
+            link: function (scope, element, attrs) {
+                setWidth(element[0]);
+
+                angular.element($window).bind('resize', function () {
+                    setWidth(element[0]);
+                });
+            }
+        }
+    }]);
+
 
     var INTEGER_REGEXP = /^\-?\d+$/;
-    clientManagerApp.directive('integer', function() {
+    clientManagerApp.directive('integer', function () {
         return {
             require: 'ngModel',
-            link: function(scope, elm, attrs, ctrl) {
-                ctrl.$validators.integer = function(modelValue, viewValue) {
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$validators.integer = function (modelValue, viewValue) {
                     if (ctrl.$isEmpty(modelValue)) {
                         // consider empty models to be valid
                         return true;
@@ -196,18 +231,18 @@
             }
         };
     });
-    clientManagerApp.directive('moment', function() {
+    clientManagerApp.directive('moment', function () {
         return {
             require: 'ngModel',
-            link: function(scope, elm, attrs, ctrl) {
-                ctrl.$validators.moment = function(modelValue, viewValue) {
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$validators.moment = function (modelValue, viewValue) {
 
                     if (ctrl.$isEmpty(modelValue)) {
                         // consider empty models to be valid
                         return true;
                     }
 
-                    if (modelValue._isAMomentObject===true) {
+                    if (modelValue._isAMomentObject === true) {
 
                         return true;
                     }
@@ -218,7 +253,6 @@
             }
         };
     });
-
 
 
 }(window));
