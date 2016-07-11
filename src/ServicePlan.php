@@ -51,6 +51,17 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
     }
 
 
+    private static function applyDefaultBenefits($plan)
+    {
+        $defaults = ServiceBenefit::getDefaultBenefits();
+        foreach($defaults as $benefit){
+            $benefit['service_plan_id']=$plan->id;
+            ServiceBenefit::create($benefit);
+        }
+
+    }
+
+
     public function getLastBackup()
     {
 
@@ -65,7 +76,7 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
         }
         $plan = parent::create($attributes);
         static::generateServiceMonths($plan);
-
+        static::applyDefaultBenefits($plan);
         return $plan;
 
     }
