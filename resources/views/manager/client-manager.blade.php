@@ -80,7 +80,6 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <benefits></benefits>
                             <fieldset class="RT-Dashboard-Form__row Client-Form__actions">
                                 <div class="RT-Dashboard-Form__col-tp-25">
                                     <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--success" ng-click="clientAdd.save(clientAddForm)">Save</button>
