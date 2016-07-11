@@ -29,5 +29,8 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
         //parent::boot($router);
 
         $router->model('service_plan', 'RTMatt\MonthlyService\ServicePlan');
+        $this->publishes([
+            __DIR__.'/../../dist/' => public_path('vendor/rtclientmanager'),
+        ], 'public');
     }
 }
