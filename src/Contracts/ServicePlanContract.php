@@ -17,4 +17,7 @@ interface ServicePlanContract
 
 
     public function getClientID();
+
+
+    public function getBenefits();
 }
