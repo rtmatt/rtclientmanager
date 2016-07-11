@@ -129,7 +129,9 @@
 
                 var percent = self.formData.active_month.hours_logged / $scope.client.service_plan.hours_available_month * 100;
                 if (change != 0) {
-                    $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
+                    $scope.client.dashboard_object.updateMonth(active_month_index, value);
+                    //OLD VERSION WITH PROGRESSBAR
+                    // $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
                     $scope.client.dashboard_object.updateAnnual(change);
                     self.originalValue = self.formData.active_month.hours_logged;
                 }
