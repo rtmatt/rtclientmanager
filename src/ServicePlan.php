@@ -34,25 +34,27 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
 
     private static function generateServiceMonths($plan)
     {
-
         $plan_id = $plan->id;
         $month   = $plan->start_date->format('m');
         for ($i = 0; $i < 12; $i++) {
             $first_of_month = Carbon::createFromDate($plan->start_date->format('Y'), $month++, 1);
-            ServiceMonth::create([
+            $args           = [
                 'start_date'      => $first_of_month,
                 'service_plan_id' => $plan_id,
                 'client_id'       => $plan->client_id
-            ]);
+            ];
+            if ($first_of_month < \Carbon\Carbon::now()) {
+                $args['hours_used'] = 0;
+            }
+            ServiceMonth::create($args);
         }
-
     }
 
 
     public function getLastBackup()
     {
 
-        return $this->last_backup_datetime?:'No Backup Performed';
+        return $this->last_backup_datetime ?: 'No Backup Performed';
     }
 
 
@@ -181,6 +183,6 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
 
     public function getClientID()
     {
-       return $this->client_id;
+        return $this->client_id;
     }
 }
