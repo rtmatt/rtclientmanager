@@ -5636,7 +5636,6 @@ Circles.prototype.setText = function (newText) {
                 var month = this.months[i];
                 var graph_wrap = month.querySelector('.js--graph');
                 if(month.classList.contains('current-month')){
-                    console.log('current month');
                     this.current_month_index=i;
                 }
                 var percent_ratio = month.dataset.percent_used / 100;
@@ -5691,7 +5690,6 @@ Circles.prototype.setText = function (newText) {
             }, 300);
         },
         updateAnnual: function (change) {
-            console.log('annual change',change);
             this.annual_hours_used = parseInt(this.annual_hours_used) + parseInt(change);
             this.annual_value_text_element.innerText = this.annual_hours_used;
             this.drawAnnual();
@@ -5782,7 +5780,6 @@ Circles.prototype.setText = function (newText) {
                 hours_available = parseInt(monthNode.dataset.hours_available),
                 graph = this.graphs[index],
                 overage = hours_used > hours_available;
-            console.log(hours_used);
             if (this.months[index].overage == true && !overage) {
                 graph.updateColors(['#DFDFDF', '#8dd624']);
                 this.months[index].overage = false;
