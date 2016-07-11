@@ -12,8 +12,8 @@
         };
         this.selectMonth = function (moment_obj) {
             this.formData.active_month = {
-                name:moment_obj.format('MMMM YYYY'),
-                obj : moment_obj
+                name: moment_obj.format('MMMM YYYY'),
+                obj: moment_obj
             }
 
         }
@@ -88,6 +88,16 @@
         var i = 0;
         var self = this;
         self.buttonText = 'Save';
+        self.submitted = false;
+        self.save_button_class = function () {
+            if(self.submitting){
+                return 'success';
+            }
+            if (self.submitted && $scope.clientUsageLogForm.$invalid) {
+                return ' ';
+            }
+            return 'success';
+        };
         function initializeData() {
             self.serviceMonths = angular.copy($scope.client.service_plan.service_history.months);
             self.formData = {
@@ -119,26 +129,40 @@
             }
         };
         this.saveLog = function () {
-            //this will only allow you to save one at a time, rather than batch save
-            self.buttonText = 'Saving...';
-            var api_url = '/api/client-manager/service-plan/' + $scope.client.service_plan.id + "/log/" + self.formData.active_month.id;
-            $http.put(api_url, self.formData.active_month).then(function (response) {
-                var value = self.formData.active_month.hours_logged;
-                var active_month_index = $scope.client.service_plan.service_history.getMonthIndex(self.formData.active_month.id);
-                var change = self.formData.active_month.hours_logged - self.originalValue;
+            self.submitted = true;
+            console.log($scope.clientUsageLogForm);
+            if ($scope.clientUsageLogForm.$valid) {
+                self.submitting = true;
+                //this will only allow you to save one at a time, rather than batch save
+                self.buttonText = 'Saving...';
+                self.buttonDisabled = true;
+                var api_url = '/api/client-manager/service-plan/' + $scope.client.service_plan.id + "/log/" + self.formData.active_month.id;
+                $http.put(api_url, self.formData.active_month).then(function (response) {
+                    var value = self.formData.active_month.hours_logged;
+                    var active_month_index = $scope.client.service_plan.service_history.getMonthIndex(self.formData.active_month.id);
+                    var change = self.formData.active_month.hours_logged - self.originalValue;
+                    var percent = self.formData.active_month.hours_logged / $scope.client.service_plan.hours_available_month * 100;
+                    if (change != 0) {
+                        $scope.client.dashboard_object.updateMonth(active_month_index, value);
+                        //OLD VERSION WITH PROGRESSBAR
+                        // $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
+                        $scope.client.dashboard_object.updateAnnual(change);
+                        self.originalValue = self.formData.active_month.hours_logged;
+                    }
+                    self.buttonText = 'Saved!';
+                    var buttonTextTimeout = $timeout(function () {
+                        self.buttonText = 'Save';
+                        self.buttonDisabled = false;
+                        self.submitted=false;
+                        self.submitting = false;
+                    }, 1500);
 
-                var percent = self.formData.active_month.hours_logged / $scope.client.service_plan.hours_available_month * 100;
-                if (change != 0) {
-                    $scope.client.dashboard_object.updateMonth(active_month_index, value);
-                    //OLD VERSION WITH PROGRESSBAR
-                    // $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
-                    $scope.client.dashboard_object.updateAnnual(change);
-                    self.originalValue = self.formData.active_month.hours_logged;
-                }
-                self.buttonText = 'Saved!';
+                    $scope.$on('$destroy', function () {
+                        $timeout.cancel(buttonTextTimeout);
+                    })
 
-
-            });
+                });
+            }
         };
     }]);
 

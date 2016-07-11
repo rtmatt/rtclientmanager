@@ -1,4 +1,4 @@
-<form action="" class="js--Dashboard-Admin-Form">
+<div class="js--Dashboard-Admin-Form">
     <fieldset class="row js--Plan-Details-Wrap"
               ng-controller="clientDashboardPlanEditController as planEdit">
         <div class="col-sm-3">
@@ -53,36 +53,40 @@
         </div>
     </fieldset>
     <hr/>
-    <fieldset class="row js--Month-Information-Wrap" ng-controller="clientDashboardPlanLogController as log">
-        <div class="col-sm-3">
-            <div class="form-group">
-            <label class="RT-Dashboard-Form__label" for="">Select Month</label>
-            <select name="" id="" class="RT-Dashboard-Form__form-control js--Plan-Edit-Input"
-                    ng-options="month.name for month in log.serviceMonths track by month.id"
-                    ng-model="log.formData.active_month"
-                    ng-change="log.changeActive()">
-            </select>
+    <form novalidate name="clientUsageLogForm" ng-controller="clientDashboardPlanLogController as log">
+        <fieldset class="row js--Month-Information-Wrap" >
+            <div class="col-sm-3">
+                <div class="form-group">
+                <label class="RT-Dashboard-Form__label" for="">Select Month</label>
+                <select name="" id="" class="RT-Dashboard-Form__form-control js--Plan-Edit-Input"
+                        ng-options="month.name for month in log.serviceMonths track by month.id"
+                        ng-model="log.formData.active_month"
+                        ng-change="log.changeActive()">
+                </select>
+                </div>
+                <div class="form-group" ng-class="{'has-error':clientUsageLogForm.hours_spent.$error.integer && log.submitted}">
+                    <label for="" class="RT-Dashboard-Form__label">Hours Spent</label>
+                    <input integer type="text" ng-model="log.formData.active_month.hours_logged"
+                           class="RT-Dashboard-Form__form-control js--Hours-Spent-Input"
+                           ng-change="log.resetButton()"
+                            name="hours_spent"/>
+                    <span class="help-block" ng-show="clientUsageLogForm.hours_spent.$error.integer && log.submitted">This has to be an integer</span>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="" class="RT-Dashboard-Form__label">Hours Spent</label>
-                <input type="text" ng-model="log.formData.active_month.hours_logged"
-                       class="RT-Dashboard-Form__form-control js--Hours-Spent-Input"
-                       ng-change="log.resetButton()"/>
+            <div class="form-group col-sm-7">
+                <label class="RT-Dashboard-Form__label u--margin-top-0" for="">Description of Work Done</label>
+                <textarea ng-change="log.resetButton()" class="RT-Dashboard-Form__form-control RT-Dashboard-Form__form-control--textarea-2-tall js--Work-Log-Input" name=""
+                          ng-model="log.formData.active_month.description" id="" cols="30"
+                          rows="10"></textarea>
             </div>
-        </div>
-        <div class="form-group col-sm-7">
-            <label class="RT-Dashboard-Form__label u--margin-top-0" for="">Description of Work Done</label>
-            <textarea ng-change="log.resetButton()" class="RT-Dashboard-Form__form-control RT-Dashboard-Form__form-control--textarea-2-tall js--Work-Log-Input" name=""
-                      ng-model="log.formData.active_month.description" id="" cols="30"
-                      rows="10"></textarea>
-        </div>
-        <div class="col-sm-2">
-            <label class="RT-Dashboard-Form__label" for="">&nbsp;</label>
-            <button type="button" ng-click="log.saveLog()"
-                    class="RT-Dashboard-Form__button RT-Dashboard-Form__button--success js--Monthly-Service-Log-Save">@{{ log.buttonText }}</button>
-        </div>
-    </fieldset>
+            <div class="col-sm-2">
+                <label class="RT-Dashboard-Form__label" for="">&nbsp;</label>
+                <button type="button" ng-click="log.saveLog()" ng-disabled="log.buttonDisabled"
+                        class="RT-Dashboard-Form__button RT-Dashboard-Form__button--@{{ log.save_button_class() }} js--Monthly-Service-Log-Save">@{{ log.buttonText }}</button>
+            </div>
+        </fieldset>
+    </form>
     {{--<hr/>--}}
     <benefits></benefits>
 
-</form>
+</div>
