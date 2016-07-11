@@ -67,6 +67,20 @@ class ServiceMonth extends Model implements \RTMatt\MonthlyService\Contracts\Ser
     }
 
 
+    /**
+     * If a future month is being set to 0, set the value to null instead of 0
+     */
+    public function update(array $attributes = [ ], array$options = [ ])
+    {
+        if (array_key_exists('hours_used', $attributes) && $attributes['hours_used'] == 0) {
+            if ($this->getStartDate() > \Carbon\Carbon::now()) {
+                $attributes['hours_used'] = null;
+            }
+        }
+        parent::update($attributes);
+    }
+
+
     public function getUsageReport()
     {
         return new \RTMatt\MonthlyService\ClientMonthUsageReport($this);
