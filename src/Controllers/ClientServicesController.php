@@ -2,6 +2,7 @@
 namespace RTMatt\MonthlyService\Controllers;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RTMatt\MonthlyService\Client;
 use Validator;
@@ -21,7 +22,9 @@ class ClientServicesController extends Controller
             return response("Owner of API key does not have an active plan", 204);
         }
         $report              = $client->getServiceReport();
-        $report->last_backup = $report->last_backup->diffForHumans();
+        if($report->last_backup instanceof Carbon){
+            $report->last_backup = $report->last_backup->diffForHumans();
+        }
 
         return json_encode($report);
 
