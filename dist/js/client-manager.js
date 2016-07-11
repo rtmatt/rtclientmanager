@@ -5074,7 +5074,9 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
 
                 var percent = self.formData.active_month.hours_logged / $scope.client.service_plan.hours_available_month * 100;
                 if (change != 0) {
-                    $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
+                    $scope.client.dashboard_object.updateMonth(active_month_index, value);
+                    //OLD VERSION WITH PROGRESSBAR
+                    // $scope.client.dashboard_object.updateMonth(active_month_index, percent, value);
                     $scope.client.dashboard_object.updateAnnual(change);
                     self.originalValue = self.formData.active_month.hours_logged;
                 }
@@ -5550,6 +5552,12 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
  * Licensed
  */
 !function(a,b){"object"==typeof exports?module.exports=b():"function"==typeof define&&define.amd?define([],b):a.Circles=b()}(this,function(){"use strict";var a=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(a){setTimeout(a,1e3/60)},b=function(a){var b=a.id;if(this._el=document.getElementById(b),null!==this._el){this._radius=a.radius||10,this._duration=void 0===a.duration?500:a.duration,this._value=0,this._maxValue=a.maxValue||100,this._text=void 0===a.text?function(a){return this.htmlifyNumber(a)}:a.text,this._strokeWidth=a.width||10,this._colors=a.colors||["#EEE","#F00"],this._svg=null,this._movingPath=null,this._wrapContainer=null,this._textContainer=null,this._wrpClass=a.wrpClass||"circles-wrp",this._textClass=a.textClass||"circles-text",this._valClass=a.valueStrokeClass||"circles-valueStroke",this._maxValClass=a.maxValueStrokeClass||"circles-maxValueStroke",this._styleWrapper=a.styleWrapper===!1?!1:!0,this._styleText=a.styleText===!1?!1:!0;var c=Math.PI/180*270;this._start=-Math.PI/180*90,this._startPrecise=this._precise(this._start),this._circ=c-this._start,this._generate().update(a.value||0)}};return b.prototype={VERSION:"0.0.6",_generate:function(){return this._svgSize=2*this._radius,this._radiusAdjusted=this._radius-this._strokeWidth/2,this._generateSvg()._generateText()._generateWrapper(),this._el.innerHTML="",this._el.appendChild(this._wrapContainer),this},_setPercentage:function(a){this._movingPath.setAttribute("d",this._calculatePath(a,!0)),this._textContainer.innerHTML=this._getText(this.getValueFromPercent(a))},_generateWrapper:function(){return this._wrapContainer=document.createElement("div"),this._wrapContainer.className=this._wrpClass,this._styleWrapper&&(this._wrapContainer.style.position="relative",this._wrapContainer.style.display="inline-block"),this._wrapContainer.appendChild(this._svg),this._wrapContainer.appendChild(this._textContainer),this},_generateText:function(){if(this._textContainer=document.createElement("div"),this._textContainer.className=this._textClass,this._styleText){var a={position:"absolute",top:0,left:0,textAlign:"center",width:"100%",fontSize:.7*this._radius+"px",height:this._svgSize+"px",lineHeight:this._svgSize+"px"};for(var b in a)this._textContainer.style[b]=a[b]}return this._textContainer.innerHTML=this._getText(0),this},_getText:function(a){return this._text?(void 0===a&&(a=this._value),a=parseFloat(a.toFixed(2)),"function"==typeof this._text?this._text.call(this,a):this._text):""},_generateSvg:function(){return this._svg=document.createElementNS("http://www.w3.org/2000/svg","svg"),this._svg.setAttribute("xmlns","http://www.w3.org/2000/svg"),this._svg.setAttribute("width",this._svgSize),this._svg.setAttribute("height",this._svgSize),this._generatePath(100,!1,this._colors[0],this._maxValClass)._generatePath(1,!0,this._colors[1],this._valClass),this._movingPath=this._svg.getElementsByTagName("path")[1],this},_generatePath:function(a,b,c,d){var e=document.createElementNS("http://www.w3.org/2000/svg","path");return e.setAttribute("fill","transparent"),e.setAttribute("stroke",c),e.setAttribute("stroke-width",this._strokeWidth),e.setAttribute("d",this._calculatePath(a,b)),e.setAttribute("class",d),this._svg.appendChild(e),this},_calculatePath:function(a,b){var c=this._start+a/100*this._circ,d=this._precise(c);return this._arc(d,b)},_arc:function(a,b){var c=a-.001,d=a-this._startPrecise<Math.PI?0:1;return["M",this._radius+this._radiusAdjusted*Math.cos(this._startPrecise),this._radius+this._radiusAdjusted*Math.sin(this._startPrecise),"A",this._radiusAdjusted,this._radiusAdjusted,0,d,1,this._radius+this._radiusAdjusted*Math.cos(c),this._radius+this._radiusAdjusted*Math.sin(c),b?"":"Z"].join(" ")},_precise:function(a){return Math.round(1e3*a)/1e3},htmlifyNumber:function(a,b,c){b=b||"circles-integer",c=c||"circles-decimals";var d=(a+"").split("."),e='<span class="'+b+'">'+d[0]+"</span>";return d.length>1&&(e+='.<span class="'+c+'">'+d[1].substring(0,2)+"</span>"),e},updateRadius:function(a){return this._radius=a,this._generate().update(!0)},updateWidth:function(a){return this._strokeWidth=a,this._generate().update(!0)},updateColors:function(a){this._colors=a;var b=this._svg.getElementsByTagName("path");return b[0].setAttribute("stroke",a[0]),b[1].setAttribute("stroke",a[1]),this},getPercent:function(){return 100*this._value/this._maxValue},getValueFromPercent:function(a){return this._maxValue*a/100},getValue:function(){return this._value},getMaxValue:function(){return this._maxValue},update:function(b,c){if(b===!0)return this._setPercentage(this.getPercent()),this;if(this._value==b||isNaN(b))return this;void 0===c&&(c=this._duration);var d,e,f,g,h=this,i=h.getPercent(),j=1;return this._value=Math.min(this._maxValue,Math.max(0,b)),c?(d=h.getPercent(),e=d>i,j+=d%1,f=Math.floor(Math.abs(d-i)/j),g=c/f,function k(b){if(e?i+=j:i-=j,e&&i>=d||!e&&d>=i)return void a(function(){h._setPercentage(d)});a(function(){h._setPercentage(i)});var c=Date.now(),f=c-b;f>=g?k(c):setTimeout(function(){k(Date.now())},g-f)}(Date.now()),this):(this._setPercentage(this.getPercent()),this)}},b.create=function(a){return new b(a)},b});
+//BECAUSE CIRCLES IS A JACKASS AND DOESN'T LET YOU UPDATE THE TEXT DISPLAY
+Circles.prototype.setText = function (newText) {
+    this._text = newText;
+    this._textContainer.innerHTML = this._getText(0);
+};
+
 (function (window, document) {
     var ClientDashboard = function (options) {
         this.options = jQuery.extend(this.options, options);
@@ -5578,7 +5586,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             return true;
         },
         __initializeTopLevelObjects: function () {
-            this.topLevelObjects=this.__setTopLevelObjects();
+            this.topLevelObjects = this.__setTopLevelObjects();
             for (var k = 0; k < this.topLevelObjects.length; k++) {
                 var key = this.topLevelObjects[k];
                 if (key == "wrapper") {
@@ -5627,13 +5635,21 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             for (var i = 0; i < this.months.length; i++) {
                 var month = this.months[i];
                 var graph_wrap = month.querySelector('.js--graph');
-
+                if(month.classList.contains('current-month')){
+                    console.log('current month');
+                    this.current_month_index=i;
+                }
                 var percent_ratio = month.dataset.percent_used / 100;
                 var wrapper_id = 'js--circle-' + i;
                 if (self.options.id !== null) {
                     wrapper_id += '--dashboard-' + self.options.id;
                 }
-
+                var colors = ['#DFDFDF', '#8dd624'];
+                month.overage = false;
+                if (parseInt(month.dataset.hours_used) > parseInt(month.dataset.hours_available)) {
+                    month.overage = true;
+                    colors = ['#DFDFDF', '#ff0000']
+                }
                 this.graphs[i] = Circles.create({
                     id: wrapper_id,
                     radius: graph_wrap.offsetWidth / 2,
@@ -5641,7 +5657,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
                     maxValue: month.dataset.hours_available,
                     width: graph_wrap.offsetWidth / 5.25,
                     text: month.dataset.hours_used,
-                    colors: ['#DFDFDF', '#8dd624'],
+                    colors: colors,
                     duration: 400,
                     wrpClass: 'circles-wrp',
                     textClass: 'progressbar-text',
@@ -5675,8 +5691,9 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             }, 300);
         },
         updateAnnual: function (change) {
-            this.annual_hours_used = parseFloat(this.annual_hours_used) + parseFloat(change);
-            this.annual_value_element.innerText = this.annual_hours_used;
+            console.log('annual change',change);
+            this.annual_hours_used = parseInt(this.annual_hours_used) + parseInt(change);
+            this.annual_value_text_element.innerText = this.annual_hours_used;
             this.drawAnnual();
 
         },
@@ -5751,13 +5768,42 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             for (var i = 0; i < this.months.length; i++) {
                 var data = this.months[i].dataset.percent_used / 100;
                 // this.drawMonth(i, data);
-                this.drawMonthWithCircles(i)
+                if (this.months[i].dataset.percent_used > 0) {
+                    this.drawMonthWithCircles(i)
+                }
             }
         },
         // DRAW A MONTH USING CIRCLES.JS
         // USING DATA FROM THE Months Member dataset, draw the circle.  That's it
         drawMonthWithCircles: function (index) {
-            this.graphs[index].update(this.months[index].dataset.hours_used);
+            var monthNode = this.months[index],
+                hours_used_raw = monthNode.dataset.hours_used,
+                hours_used = parseInt(hours_used_raw),
+                hours_available = parseInt(monthNode.dataset.hours_available),
+                graph = this.graphs[index],
+                overage = hours_used > hours_available;
+            console.log(hours_used);
+            if (this.months[index].overage == true && !overage) {
+                graph.updateColors(['#DFDFDF', '#8dd624']);
+                this.months[index].overage = false;
+            }
+            if (this.months[index].overage == false && overage) {
+                graph.updateColors(['#DFDFDF', '#ff0000']);
+            }
+            if (overage) {
+                this.months[index].overage = true;
+            }
+            graph.update(hours_used);
+            var text= hours_used;
+            if(hours_used<1){
+                var text="0";
+                if(this.current_month_index<index){
+                    var text="-";
+                }
+            }
+            
+            
+            graph.setText(text);
         },
         // THIS DRAWS A MONTH USING THE NOW-DEPRECATED PROGRESSBAR.JS
         drawMonth: function (month_index, data, value) {
@@ -5804,7 +5850,8 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             this.annual_wrap = this.wrapper.querySelector('.js--annual_usage'),
                 this.annual_percent_usage = this.annual_wrap.dataset.year_percent_used,
                 this.annual_progress = this.wrapper.querySelector('.js--Dashboard__annual-usage-progress'),
-                this.annual_value_element = this.wrapper.querySelector('.js--Dashboard__annual-usage-value');
+                this.annual_value_element = this.wrapper.querySelector('.js--Dashboard__annual-usage-value'),
+                this.annual_value_text_element = this.wrapper.querySelector('.js--Dashboard__annual-usage-text');
             this.annual_hours_available = this.annual_wrap.dataset.year_hours_available;
             this.annual_hours_used = this.annual_wrap.dataset.year_hours_used;
 
@@ -5955,18 +6002,24 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
 
 
             __attachModalListener();
-            if(!self.options.admin_mode){
+            if (!self.options.admin_mode) {
                 __attachFormListener();
             }
 
         },
-        updateMonth: function (month_index, percent, value) {
+        updateMonth: function (month_index, value) {
             var monthNode = this.months[month_index];
-            monthNode.dataset.percent_used = percent;
-            var text_display = monthNode.querySelector('.progressbar-text');
-            text_display.innerText = value;
-            this.drawMonth(month_index, percent / 100, value);
+            monthNode.dataset.hours_used = value;
+            this.drawMonthWithCircles(month_index);
+
         },
+        //updateMonth: function (month_index, percent, value) {
+        //    var monthNode = this.months[month_index];
+        //    monthNode.dataset.percent_used = percent;
+        //    var text_display = monthNode.querySelector('.progressbar-text');
+        //    text_display.innerText = value;
+        //    this.drawMonth(month_index, percent / 100, value);
+        //},
 
         __init: function () {
             this.__initMonths();
@@ -5991,7 +6044,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
             admin_mode: false
         },
         __setTopLevelObjects: function () {
-            if (this.options.admin_mode){
+            if (this.options.admin_mode) {
                 return [
                     'wrapper', 'alertToggle', 'alertForm', 'modalTrigger', 'modal', 'alertSubmitButton'
                 ];
@@ -6002,7 +6055,7 @@ function n(){var t=this,i=window||global;e.extend(this,{isNativeEvent:function(e
 
         },
         __setNecessaryObjects: function () {
-            if (this.options.admin_mode){
+            if (this.options.admin_mode) {
                 return [
                     'wrapper', 'alertToggle', 'alertForm'
                 ];
