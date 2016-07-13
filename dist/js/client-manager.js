@@ -5659,8 +5659,8 @@ Circles.prototype.setText = function (newText) {
             for (var i = 0; i < this.months.length; i++) {
                 var month = this.months[i];
                 var graph_wrap = month.querySelector('.js--graph');
-                if(month.classList.contains('current-month')){
-                    this.current_month_index=i;
+                if (month.classList.contains('current-month')) {
+                    this.current_month_index = i;
                 }
                 var percent_ratio = month.dataset.percent_used / 100;
                 var wrapper_id = 'js--circle-' + i;
@@ -5719,50 +5719,57 @@ Circles.prototype.setText = function (newText) {
             this.drawAnnual();
 
         },
-        reset: function (data) {
+        resetAnnual: function (hours_available_year) {
             this.annual_hours_used = 0;
-            this.annual_hours_available = data.hours_available_year;
-            this.annual_value_element.innerText = "0";
-            this.annual_value_element.style.left = 0;
-            this.annual_progress.style.width = 0;
-            this.annual_value_element.style.color = 'inherit';
-            this.annual_progress.style.backgroundColor = "#8dd624";
-            this.annual_value_element.style.marginLeft = '0';
-            var annual_avail_el = this.wrapper.querySelector('.js--AnnualHoursAvailable');
-            annual_avail_el.innerText = data.hours_available_year;
+            this.drawAnnual();
+            this.updateAnnualDisplay(hours_available_year, 0);
+        },
+        resetMonthGraphs: function (service_plan) {
+            var self=this;
 
-            for (var i = 0; i < this.months.length; i++) {
-                //Update Month Name
-                var month_el = this.months[i],
-                    month_el_name = month_el.querySelector('.js--Month-Name');
-
-                if (month_el.classList.contains('HourSphere--currentMonth')) {
-                    month_el.classList.remove('HourSphere--currentMonth');
+            function resetMonthLabel(month_el,index){
+                var month_el_name = month_el.querySelector('.js--Month-Name');
+                if (month_el.classList.contains('current-month')) {
+                    month_el.classList.remove('current-month');
                 }
-
-
-                var date_obj = new Date(data.service_history.months[i].name);
-
+                var date_obj = new Date(service_plan.service_history.months[i].name);
                 var date_text = date_obj.toLocaleString('en-us', {month: "short"});
                 month_el_name.innerText = date_text;
                 if (date_obj.toLocaleString('en-us', {
                         month: "short",
                         year: "numeric"
                     }) == new Date().toLocaleString('en-us', {month: "short", year: "numeric"})) {
-                    month_el.classList.add('HourSphere--currentMonth');
+                    month_el.classList.add('current-month');
+                    self.current_month_index = index;
                 }
-                //Highlight Current Month
-
-
-                //Recreate Graph
-                this.graphs[i].destroy();
-                this.graphs[i] = new ProgressBar.Circle(this.months[i], {
-                    color: '#8dd624',
-                    text: {
-                        value: "-"
-                    }
-                });
             }
+            function resetMonthGraph(index){
+                var month_el = self.months[index];
+                month_el.dataset.hours_available=service_plan.hours_available_month;
+                month_el.dataset.hours_used = 0;
+                self.graphs[index]._maxValue = service_plan.hours_available_month;
+                self.drawMonthWithCircles(index);
+                resetMonthLabel(month_el,index);
+            }
+            for (var i = 0; i < this.months.length; i++) {
+                resetMonthGraph(i);
+            }
+        },
+        reset: function (service_plan) {
+            //Reset Member Vars
+            this.current_month_index=-1;
+            this.annual_hours_used = 0;
+            this.annual_hours_available = service_plan.hours_available_year;
+            this.annual_value_element.style.color = 'inherit';
+            //Reset Annual
+            this.resetAnnual(service_plan.hours_available_year);
+            //Reset Month Graphs
+            this.resetMonthGraphs(service_plan);
+        },
+        updateAnnualDisplay: function (hours_available, hours_used) {
+            var annual_avail_el = this.wrapper.querySelector('.js--Dashboard__annual-usage-limit');
+            annual_avail_el.innerText = hours_available;
+            this.annual_value_text_element.innerText = hours_used;
         },
         drawAnnual: function () {
             this.annual_percent_usage = this.annual_hours_used / this.annual_hours_available * 100;
@@ -5804,10 +5811,12 @@ Circles.prototype.setText = function (newText) {
                 hours_available = parseInt(monthNode.dataset.hours_available),
                 graph = this.graphs[index],
                 overage = hours_used > hours_available;
+            //If changing from an overage to a non-overage
             if (this.months[index].overage == true && !overage) {
                 graph.updateColors(['#DFDFDF', '#8dd624']);
                 this.months[index].overage = false;
             }
+            //If changing from a non-overage to a an overage
             if (this.months[index].overage == false && overage) {
                 graph.updateColors(['#DFDFDF', '#ff0000']);
             }
@@ -5815,15 +5824,15 @@ Circles.prototype.setText = function (newText) {
                 this.months[index].overage = true;
             }
             graph.update(hours_used);
-            var text= hours_used;
-            if(hours_used<1){
-                var text="0";
-                if(this.current_month_index<index){
-                    var text="-";
+            var text = hours_used;
+            if (hours_used < 1) {
+                var text = "0";
+                if (this.current_month_index < index) {
+                    var text = "-";
                 }
             }
-            
-            
+
+
             graph.setText(text);
         },
         // THIS DRAWS A MONTH USING THE NOW-DEPRECATED PROGRESSBAR.JS
@@ -5931,7 +5940,8 @@ Circles.prototype.setText = function (newText) {
             var self = this;
 
             function __attachToggleListener() {
-                $(self.alertToggle).click(function () {
+                $(self.alertToggle).click(function (e) {
+                    e.preventDefault();
                     self.__toggleAlertForm();
                 });
             }
