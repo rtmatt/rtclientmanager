@@ -9,17 +9,20 @@
 namespace RTMatt\MonthlyService\Controllers;
 
 
+use RTMatt\MonthlyService\PriorityAlert;
+
 class PriorityAlertController extends \App\Http\Controllers\Controller{
 
     public function create(){
-        return view('rtdashboard::temp-alertform');
+        return view('rtclientmanager::temp-alertform');
     }
 
 
     public function index()
     {
-        $alerts = \RTMatt\MonthlyService\PriorityAlert::all();
-        return view('rtdashboard::temp-alertIndex',compact('alerts'));
+        $alert_count = PriorityAlert::count();
+        $clients = \RTMatt\MonthlyService\Client::all();
+        return view('rtclientmanager::priority-alerts.index',compact('clients','alert_count'));
     }
 
 
