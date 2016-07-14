@@ -68,7 +68,7 @@ class ClientBenefitController extends Controller
     {
         $file_name = str_slug($form_input['name']) . str_random() . "_icon." . $file->getClientOriginalExtension();
         $file->move(public_path('uploads/benefits/'), $file_name);
-        $form_input['icon'] = '/uploads/benefits/' . $file_name;
+        $form_input['icon'] = url('/uploads/benefits/' . $file_name);
 
         return $form_input;
     }
