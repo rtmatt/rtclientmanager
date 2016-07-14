@@ -60,10 +60,16 @@
         });
         this.destroy = function () {
             $scope.$parent.clientManager.addMode = false;
+             $scope.$parent.clientManager.addButtonText="Add";
+             $scope.$parent.clientManager.addButtonClass="info";
+
+            this.addButtonText="Add";
+            this.addButtonClass="info";
             self.formData = {};
             $scope.clientAddForm.$setPristine();
             $scope.clientAddForm.$setSubmitted();
             this.submitted = false;
+
         };
     }]);
     clientManagerApp.controller('clientManagerController', ['$scope', 'clientCollection', function ($scope, clientCollection) {

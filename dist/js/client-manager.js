@@ -4640,10 +4640,16 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
         });
         this.destroy = function () {
             $scope.$parent.clientManager.addMode = false;
+             $scope.$parent.clientManager.addButtonText="Add";
+             $scope.$parent.clientManager.addButtonClass="info";
+
+            this.addButtonText="Add";
+            this.addButtonClass="info";
             self.formData = {};
             $scope.clientAddForm.$setPristine();
             $scope.clientAddForm.$setSubmitted();
             this.submitted = false;
+
         };
     }]);
     clientManagerApp.controller('clientManagerController', ['$scope', 'clientCollection', function ($scope, clientCollection) {
