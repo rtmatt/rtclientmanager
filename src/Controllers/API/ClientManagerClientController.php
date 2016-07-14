@@ -44,4 +44,11 @@ class ClientManagerClientController extends Controller
 
     }
 
+
+    public function destroy($client_id)
+    {
+        Client::archive($client_id);
+        return response('Client Archived',200);
+    }
+
 }

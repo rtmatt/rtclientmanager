@@ -54,8 +54,8 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
     private static function applyDefaultBenefits($plan)
     {
         $defaults = ServiceBenefit::getDefaultBenefits();
-        foreach($defaults as $benefit){
-            $benefit['service_plan_id']=$plan->id;
+        foreach ($defaults as $benefit) {
+            $benefit['service_plan_id'] = $plan->id;
             ServiceBenefit::create($benefit);
         }
 
@@ -77,6 +77,7 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
         $plan = parent::create($attributes);
         static::generateServiceMonths($plan);
         static::applyDefaultBenefits($plan);
+
         return $plan;
 
     }
@@ -167,7 +168,7 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
     }
 
 
-    public function archive($new_plan_id)
+    public function archive($new_plan_id = false)
     {
         $service_months         = $this->service_months();
         $service_months_content = $service_months->get()->toJson();
@@ -181,10 +182,12 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
             'service_history'       => $service_months_content
 
         ]);
-        $this->benefits()->each(function ($item) use ($new_plan_id) {
-            $item->update([ 'service_plan_id' => $new_plan_id ]);
+        if ($new_plan_id) {
+            $this->benefits()->each(function ($item) use ($new_plan_id) {
 
-        });
+                $item->update([ 'service_plan_id' => $new_plan_id ]);
+            });
+        }
         $service_months->delete();
         $this->delete();
 

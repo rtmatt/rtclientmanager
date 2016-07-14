@@ -59,6 +59,12 @@ class Client extends Model
     }
 
 
+    public function archived_plans()
+    {
+        return $this->hasMany('\RTMatt\MonthlyService\ArchivedPlan');
+    }
+
+
     public function api_key()
     {
         return $this->hasOne('\RTMatt\MonthlyService\RedtrainApiKeys');
@@ -101,6 +107,38 @@ class Client extends Model
         $auth_name   = $parsed_auth->auth_name;
 
         return static::getByAPIName($auth_name);
+    }
+
+
+    public static function archive($client_id)
+    {
+        $client = static::find($client_id);
+
+        //archive their plan
+        $client->service_plan->archive();
+        //Attach all archived plans to archived client
+        $archived_plans = $client->archived_plans;
+
+        $args = [
+            'id'                    => $client->id,
+            'name'                  => $client->name,
+            'primary_contact_name'  => $client->primary_contact_name,
+            'primary_contact_email' => $client->primary_contact_email,
+            'primary_contact_phone' => $client->primary_contact_phone
+        ];
+
+        $args['archived_plans'] = $archived_plans->toJson();
+
+        $archived_client = ArchivedClient::create($args);
+        $archived_plans->each(function ($service_plan) {
+            $service_plan->delete();
+        });
+        //Remove their api key
+        $client->api_key->delete();
+
+        $client->delete();
+        //delete all their benefits
+        //Happens automatically through cascade
     }
 
 }
