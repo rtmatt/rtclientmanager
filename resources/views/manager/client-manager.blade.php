@@ -92,7 +92,14 @@
                     </div>
                 </div>
                 <div class="RT-Client-Manager__dashboard-list" ng-show="!clientManager.addMode">
+
+                    <div ng-if="clientCollection.is_empty">
+                        <h2>You have no clients.</h2>
+                        <h3>:(</h3>
+                        <button class="u--margin-top-30 RT-Dashboard-Form__button RT-Dashboard-Form__button--@{{ clientManager.addButtonClass }}" ng-click="clientManager.toggleAddMode()">Add one</button>
+                    </div>
                     <section class="Client-Manager-Client"  ng-repeat="client in clients">
+
                         <div ng-controller="clientDashboardsController as dashboards">
                             <h1 class="Client-Manager-Client__heading">@{{client.name}}</h1>
                             <div ng-if="!dashboards.clientFullyLoaded()" class="RT-Client-Manager Dashboard-Loading">
