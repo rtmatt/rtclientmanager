@@ -45,15 +45,18 @@
     clientManagerApp.service('clientCollection', ['clientFactory', '$http', function (clientFactory, $http) {
         var ClientCollection = function () {
             this.clients = {};
+            this.is_empty = true;
         };
         ClientCollection.prototype = {
             initialize: function (callback) {
                 var self = this;
-
                 function getClientData() {
                     var client_api_url = '/api/client-manager/clients';
                     $http.get(client_api_url).then(function (response) {
                         var clients = response.data;
+                        if(response.data.length>0){
+                            self.is_empty=false;
+                        }
                         for (var i = 0; i < clients.length; i++) {
                             var client = clients[i];
                             self.add(( clientFactory.new(client.id, client.name)));
@@ -68,7 +71,7 @@
             },
             add: function (Client, callback) {
                 this.clients[Client.id] = Client;
-
+                this.is_empty=false;
                 if (typeof callback == 'function') {
                     callback();
                 }
