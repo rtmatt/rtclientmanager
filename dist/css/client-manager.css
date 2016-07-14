@@ -6875,11 +6875,12 @@ textarea.parsley-error {
 .RT-Client_Dashboard .services-icon {
   height: 60px;
   width: 60px;
+  max-width: 100%;
   border-radius: 50%;
   margin: 0 auto;
   text-align: center; }
   .RT-Client_Dashboard .services-icon img {
-    width: 60px; }
+    width: 100%; }
   @media screen and (min-width: 768px) {
     .RT-Client_Dashboard .services-icon {
       float: left;
@@ -7213,5 +7214,18 @@ textarea.parsley-error {
 .RT-Dashboard-Form--add-client {
   border-top: none;
   display: block; }
+
+.DashboardIconLabel__icon--log-backup {
+  height: 18px; }
+
+.StatusBarSecondaryInformation__item--services {
+  cursor: pointer; }
+
+.RT-Client_Dashboard .services-icon {
+  margin: 0 auto 15px auto;
+  float: none; }
+  @media screen and (min-width: 768px) {
+    .RT-Client_Dashboard .services-icon {
+      margin: 0 auto; } }
 
 /*# sourceMappingURL=client-manager.css.map */
