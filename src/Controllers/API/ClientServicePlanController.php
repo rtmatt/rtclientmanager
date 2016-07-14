@@ -28,6 +28,7 @@ class ClientServicePlanController extends Controller
         $plan_keys['start_date'] = \Carbon\Carbon::parse($month_string);
         $plan_keys['client_id']  = $service_plan->client_id;
         $plan_keys['last_backup_datetime'] = $service_plan->last_backup_datetime;
+        $plan_keys['skip_default_benefits'] = true;
         $new_plan                = ServicePlan::create($plan_keys);
         $service_plan->archive($new_plan->id);
 

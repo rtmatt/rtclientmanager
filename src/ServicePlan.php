@@ -76,7 +76,9 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
         }
         $plan = parent::create($attributes);
         static::generateServiceMonths($plan);
-        static::applyDefaultBenefits($plan);
+        if(!(array_key_exists('skip_default_benefits',$attributes) && $attributes['skip_default_benefits']===true)){
+            static::applyDefaultBenefits($plan);
+        }
 
         return $plan;
 
@@ -172,14 +174,14 @@ class ServicePlan extends Model implements ServicePlanContract, ServiceReporter
     {
         $service_months         = $this->service_months();
         $service_months_content = $service_months->get()->toJson();
-        $tmp                    = ArchivedPlan::create([
+        ArchivedPlan::create([
             'client_id'             => $this->client_id,
             'hours_available_month' => $this->hours_available_month,
             'hours_available_year'  => $this->hours_available_year,
             'standard_rate'         => $this->standard_rate,
             'last_backup_datetime'  => $this->last_backup_datetime,
             'start_date'            => $this->start_date,
-            'service_history'       => $service_months_content
+            'service_history'       => $service_months_content,
 
         ]);
         if ($new_plan_id) {
