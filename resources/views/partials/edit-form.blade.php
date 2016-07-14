@@ -88,5 +88,5 @@
     </form>
     {{--<hr/>--}}
     <benefits></benefits>
-
+    <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--danger RT-Dashboard-Form__button--delete-client" ng-click="clientManager.archiveClient(client)">Archive Client</button>
 </div>

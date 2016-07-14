@@ -9,6 +9,19 @@
     &:not(.RT-Dashboard-Form__button-inline) {
       display: block;
       width: 100%;
+      &.RT-Dashboard-Form__button--delete-client{
+        position: absolute;
+        bottom:0;
+        right:0;
+        padding:2px;
+        font-size:10px;
+        width:150px;
+        background: transparent;
+        border-style:dotted;
+        border-color:#2f2f2f;
+        border-width:1px 0 0 1px;
+        color: lighten(#2f2f2f,20%);
+      }
     }
     + .RT-Dashboard-Form__button:not(:first-child) {
       margin-top: 15px;

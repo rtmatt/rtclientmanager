@@ -4680,7 +4680,21 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             }, 300);
             this.active_client_id = id;
         };
+        this.archiveClient = function(client){
+            function confirmArchive(callback){
+                //if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
+                    if(typeof callback==='function'){
+                        callback();
+                    }
+                //}
 
+            }
+
+            confirmArchive(function(){
+                console.log('archiving client',client);
+                clientCollection.remove(client.id);
+            });
+        };
         this.addButtonText="Add";
         this.addButtonClass="info";
 
@@ -4750,7 +4764,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                         var newTime = response.data.backup_datetime;
                         self.replaceBackupText(newTime);
                     });
-                }
+                };
             },
             controllerAs: 'clientDashboardController'
         }
@@ -4862,7 +4876,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
 (function () {
     "use strict";
     var clientManagerApp = angular.module('module-clients', ['module-servicePlan']);
-    clientManagerApp.service('clientFactory', function (servicePlanFactory, $interval) {
+    clientManagerApp.service('clientFactory', function (servicePlanFactory, $interval,$http) {
         var Client = function (id, name,callback) {
             this.id = id;
             this.name = name;
@@ -4888,6 +4902,12 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                 }, 20);
 
 
+            },
+            archive:function(){
+                var url = '/api/client-manager/clients/'+this.id;
+                $http.delete(url).then(function(response){
+                    console.log(response);
+                });
             }
         };
 
@@ -4930,6 +4950,12 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             },
             find: function (id) {
                 return (this.clients.hasOwnProperty(id)) ? this.clients[id] : null;
+            },
+            remove:function(client_id){
+              console.log('removing client',client_id);
+                var client = this.clients[client_id];
+                client.archive();
+                delete this.clients[client_id];
             }
 
 
