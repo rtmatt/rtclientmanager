@@ -32,5 +32,9 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
         $this->publishes([
             __DIR__.'/../../dist/' => public_path('vendor/rtclientmanager'),
         ], 'public');
+
+        $this->publishes([
+            __DIR__.'/../database/migrations/' => database_path('migrations')
+        ], 'migrations');
     }
 }
