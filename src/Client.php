@@ -110,6 +110,11 @@ class Client extends Model
     }
 
 
+    public function priority_alerts()
+    {
+        return $this->hasMany('\RTMatt\MonthlyService\PriorityAlert');
+    }
+
     public static function archive($client_id)
     {
         $client = static::find($client_id);
