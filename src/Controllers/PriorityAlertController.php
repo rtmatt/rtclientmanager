@@ -20,9 +20,16 @@ class PriorityAlertController extends \App\Http\Controllers\Controller{
 
     public function index()
     {
+        $master_layout = 'layouts.admin';
+
+
+        if(!view()->exists($master_layout)){
+            $master_layout = 'rtclientmanager::layouts.admin';
+        }
+
         $alert_count = PriorityAlert::count();
         $clients = \RTMatt\MonthlyService\Client::all();
-        return view('rtclientmanager::priority-alerts.index',compact('clients','alert_count'));
+        return view('rtclientmanager::priority-alerts.index',compact('clients','alert_count','master_layout'));
     }
 
 
