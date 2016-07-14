@@ -12,5 +12,27 @@ php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlySe
 php artisan migrate
 ```
 
+Configure CORS
+
+
+```  
+php artisan vendor:publish --provider="Barryvdh\Cors\ServiceProvider"
+```
+
+
+in config/cors.php
+
+```  php
+'supportsCredentials' => false,
+    'allowedOrigins' => ['*'],
+    'allowedHeaders' => ['*'],
+    'allowedMethods' => ['POST'],
+    'exposedHeaders' => [],
+    'maxAge' => 0,
+    'hosts' => [],
+```
+
+
+
 
 
