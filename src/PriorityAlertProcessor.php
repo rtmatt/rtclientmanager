@@ -66,7 +66,7 @@ class PriorityAlertProcessor
         $notification_email = $this->getNotificationEmail()->address;
         $notification_name  = $this->getNotificationName();
 
-        \Mail::queue('rtdashboard::emails.client-notification', compact('notification_name'),
+        \Mail::queue('rtclientmanager::emails.client-notification', compact('notification_name'),
             function ($m) use ($notification_email, $notification_name) {
                 $m->from('noreply@designledge.com', 'DESIGNLEDGE');
                 $m->to($notification_email, $notification_name)->subject('We Received Your DESIGNLEDGE Priority Alert');
@@ -112,7 +112,7 @@ class PriorityAlertProcessor
 
         }
 
-        \Mail::queue('rtdashboard::emails.home-notification', compact('alert'),
+        \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
             function ($m) use ($alert, $info_dict, $attachFile) {
                 $m->from('noreply@designledge.com', 'DESIGNLEDGE');
                 $m->to($info_dict['to'], $info_dict['to_name']);
