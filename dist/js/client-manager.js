@@ -5620,8 +5620,6 @@ Circles.prototype.setText = function (newText) {
 
         this.__init();
     };
-//TODO: We need to update all the stuff for the admin manager.  Updating/reanimating months
-    // when data changes
     ClientDashboard.prototype = {
         __dependenciesLoaded: function () {
             if (typeof Circles !== 'function') {
@@ -5774,7 +5772,7 @@ Circles.prototype.setText = function (newText) {
                 month_el.dataset.hours_available=service_plan.hours_available_month;
                 month_el.dataset.hours_used = 0;
                 self.graphs[index]._maxValue = service_plan.hours_available_month;
-                self.drawMonthWithCircles(index);
+                self.drawMonth(index);
                 resetMonthLabel(month_el,index);
             }
             for (var i = 0; i < this.months.length; i++) {
@@ -5824,13 +5822,13 @@ Circles.prototype.setText = function (newText) {
                 var data = this.months[i].dataset.percent_used / 100;
                 // this.drawMonth(i, data);
                 if (this.months[i].dataset.percent_used > 0) {
-                    this.drawMonthWithCircles(i)
+                    this.drawMonth(i)
                 }
             }
         },
         // DRAW A MONTH USING CIRCLES.JS
         // USING DATA FROM THE Months Member dataset, draw the circle.  That's it
-        drawMonthWithCircles: function (index) {
+        drawMonth: function (index) {
             var monthNode = this.months[index],
                 hours_used_raw = monthNode.dataset.hours_used,
                 hours_used = parseInt(hours_used_raw),
@@ -5861,48 +5859,8 @@ Circles.prototype.setText = function (newText) {
 
             graph.setText(text);
         },
-        // THIS DRAWS A MONTH USING THE NOW-DEPRECATED PROGRESSBAR.JS
-        drawMonth: function (month_index, data, value) {
-            //IF OVER LIMIT
-            if (data > 1) {
-                data = 1;
-                this.graphs[month_index].destroy();
-                this.graphs[month_index] = new ProgressBar.Circle(this.months[month_index], {
-                    color: '#ff0000',
-                    from: {color: '#8dd624'},
-                    to: {color: '#ff0000'},
-                    text: {
-                        value: value ? value : this.months[month_index].dataset.hours_used
-                    }
-
-                });
-                this.graphs[month_index].animate(data);
-                this.graphs[month_index].overage = true;
-                return;
-            }
-
-            if (this.graphs[month_index].overage == true) {
-                this.graphs[month_index].destroy();
-                this.graphs[month_index] = new ProgressBar.Circle(this.months[month_index], {
-                    color: '#8dd624',
-                    to: {color: '#8dd624'},
-                    from: {color: '#ff0000'},
-                    text: {
-                        value: value ? value : this.months[month_index].dataset.hours_used
-                    }
-
-                });
-                this.graphs[month_index].animate(data);
-                this.graphs[month_index].overage = false;
-                return;
-            }
-            this.graphs[month_index].animate(data);
-
-
-        },
         __initAnnual: function () {
             //@todo: optimize this maybe
-
             this.annual_wrap = this.wrapper.querySelector('.js--annual_usage'),
                 this.annual_percent_usage = this.annual_wrap.dataset.year_percent_used,
                 this.annual_progress = this.wrapper.querySelector('.js--Dashboard__annual-usage-progress'),
@@ -6025,7 +5983,6 @@ Circles.prototype.setText = function (newText) {
 
                     if (formValidator.isValid()) {
                         __toggleSubmitButton();
-                        //todo: disable submit button and display user feedback the form is working
                         $.ajax({
                             type: 'POST',
                             url: self.options.api_base_url + '/api/client-service/priority-alert',
@@ -6036,9 +5993,7 @@ Circles.prototype.setText = function (newText) {
                                 "Authorization": 'Basic ' + self.options.auth
                             },
                             success: function (data) {
-                                //self.__toggleAlertForm();
                                 self.__handleResponse(['We received your message and will respond soon.'], 'success', self.alertForm);
-                                //todo: clear form inputs, clear errors, undisable submit button.
                                 __resetForm();
                                 __toggleSubmitButton();
                             },
@@ -6067,17 +6022,9 @@ Circles.prototype.setText = function (newText) {
         updateMonth: function (month_index, value) {
             var monthNode = this.months[month_index];
             monthNode.dataset.hours_used = value;
-            this.drawMonthWithCircles(month_index);
+            this.drawMonth(month_index);
 
         },
-        //updateMonth: function (month_index, percent, value) {
-        //    var monthNode = this.months[month_index];
-        //    monthNode.dataset.percent_used = percent;
-        //    var text_display = monthNode.querySelector('.progressbar-text');
-        //    text_display.innerText = value;
-        //    this.drawMonth(month_index, percent / 100, value);
-        //},
-
         __init: function () {
             this.__initMonths();
 
