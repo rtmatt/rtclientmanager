@@ -38,13 +38,13 @@ class RTAPIMiddleware
         $authorization_header = $request->header('authorization');
 
         if ( ! $authorization_header) {
-            return response('Get outta here with that unauthenticated crap.', 401);
+            return response('You must provide the required authentication.', 401);
         }
         if ($client = $this->check($authorization_header)) {
             $request->merge(compact('client'));
             return $next($request);
         }
-        return response('You ain\'t provided the correct authentication shits', 403);
+        return response('Invalid authentication credentials provided.', 403);
 
     }
 
