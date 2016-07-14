@@ -5,7 +5,14 @@
         RedTrain Web Services
     </title>
     <meta charset="utf-8">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+        em{
+            color: #808080;
+        }
+    </style>
 </head>
 <body class="">
 

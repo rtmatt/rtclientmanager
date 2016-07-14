@@ -1,20 +1,8 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Priority Alerts</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <style>
-        em{
-            color: #808080;
-        }
-    </style>
-</head>
-<body>
+@extends($master_layout)
+@section('content')
 <div class="container">
-    <h1>Priority Alerts</h1>
+    <h1>Priority Alerts <small>
+            <a href="/client-manager">Client Manager</a></small></h1>
 
     @if($alert_count>0)
 
@@ -209,6 +197,6 @@
 
     @else
         <h2>No priority alerts! Hooray!</h2>
-    @endif</div>
-</body>
-</html>
+    @endif
+</div>
+@endsection
