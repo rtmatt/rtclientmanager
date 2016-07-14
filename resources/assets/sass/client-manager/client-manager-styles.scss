@@ -156,3 +156,17 @@ $fixed-client-breakpoint:1300px;
   border-top:none;
   display: block;
 }
+.DashboardIconLabel__icon--log-backup{
+  height:18px;
+}
+.StatusBarSecondaryInformation__item--services{
+  cursor: pointer;
+
+}
+.RT-Client_Dashboard .services-icon{
+  margin:0 auto 15px auto;
+  float: none;
+  @media screen and (min-width:$screen-sm-min){
+      margin:0 auto;
+  }
+}

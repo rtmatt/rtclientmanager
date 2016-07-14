@@ -2,8 +2,10 @@
     <section>
         <div class="Monthly-Service js--Monthly-Service-Benefit" ng-repeat="benefit in benefitsController.benefits">
             <div class="row" ng-controller="benefitEditorController as benefitEdit">
-                <div class="col-sm-3">
-                    <img ng-src="@{{ benefit.icon }}" class="img-responsive js--Monthly-Service-Benefit__image" ng-hide="benefitEdit.editMode" alt=""/>
+                <div class="col-sm-2 col-md-1">
+                    <div class="services-icon">
+                        <img ng-src="@{{ benefit.icon }}" class="img-responsive js--Monthly-Service-Benefit__image" ng-hide="benefitEdit.editMode" alt=""/>
+                    </div>
                     <div class="form-group" ng-show="benefitEdit.editMode">
                         <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--info RT-Dashboard-Form__button-inline" type="button" id="file_upload_btn" ngf-select ng-model="benefit.file" name="file" ngf-pattern="'image/*,application/pdf,application/zip,application/x-rar-compressed'" accept="image/*,application/pdf,application/zip,application/x-rar-compressed" ngf-max-size="10MB" ng-required="file.description && !file.id">
                             Choose File
@@ -11,7 +13,7 @@
                         <span ng-show="benefit.file.name || !file.id">@{{benefit.file.name || 'None Selected'}}</span>
                     </div>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-8 col-md-9">
                     <h3 ng-hide="benefitEdit.editMode" class="Monthly-Service__heading js--Monthly-Service-Benefit__heading">@{{ benefit.name }}</h3>
                     <div class="form-group" ng-show="benefitEdit.editMode">
                         <label class="RT-Dashboard-Form__label" for="">Name</label>
