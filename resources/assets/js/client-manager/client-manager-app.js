@@ -100,7 +100,21 @@
             }, 300);
             this.active_client_id = id;
         };
+        this.archiveClient = function(client){
+            function confirmArchive(callback){
+                //if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
+                    if(typeof callback==='function'){
+                        callback();
+                    }
+                //}
 
+            }
+
+            confirmArchive(function(){
+                console.log('archiving client',client);
+                clientCollection.remove(client.id);
+            });
+        };
         this.addButtonText="Add";
         this.addButtonClass="info";
 
@@ -170,7 +184,7 @@
                         var newTime = response.data.backup_datetime;
                         self.replaceBackupText(newTime);
                     });
-                }
+                };
             },
             controllerAs: 'clientDashboardController'
         }

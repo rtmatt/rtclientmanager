@@ -1,7 +1,7 @@
 (function () {
     "use strict";
     var clientManagerApp = angular.module('module-clients', ['module-servicePlan']);
-    clientManagerApp.service('clientFactory', function (servicePlanFactory, $interval) {
+    clientManagerApp.service('clientFactory', function (servicePlanFactory, $interval,$http) {
         var Client = function (id, name,callback) {
             this.id = id;
             this.name = name;
@@ -27,6 +27,12 @@
                 }, 20);
 
 
+            },
+            archive:function(){
+                var url = '/api/client-manager/clients/'+this.id;
+                $http.delete(url).then(function(response){
+                    console.log(response);
+                });
             }
         };
 
@@ -69,6 +75,12 @@
             },
             find: function (id) {
                 return (this.clients.hasOwnProperty(id)) ? this.clients[id] : null;
+            },
+            remove:function(client_id){
+              console.log('removing client',client_id);
+                var client = this.clients[client_id];
+                client.archive();
+                delete this.clients[client_id];
             }
 
 
