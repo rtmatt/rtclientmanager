@@ -7228,4 +7228,7 @@ textarea.parsley-error {
     .RT-Client_Dashboard .services-icon {
       margin: 0 auto; } }
 
+.u--margin-top-30 {
+  margin-top: 30px !important; }
+
 /*# sourceMappingURL=client-manager.css.map */
