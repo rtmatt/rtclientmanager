@@ -36,5 +36,9 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
         $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'migrations');
+        if (! $this->app->routesAreCached()) {
+
+            require __DIR__.'/../routes/routes.php';
+        }
     }
 }
