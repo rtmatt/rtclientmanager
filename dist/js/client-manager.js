@@ -4376,14 +4376,14 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             this.origionalBenefit = angular.copy(this.benefit);
         };
         this.delete = function () {
-            var api_url = '/api/client-manager/benefits/' + $scope.benefit.id;
+            var api_url = '/api/client-manager/service-benefit/' + $scope.benefit.id;
             $http.delete(api_url).then(function (response) {
                 //@todo:is there anything else we need to do here?
                 $scope.client.service_plan.benefits.remove($scope.benefit.id);
             });
         };
         this.save = function () {
-            var api_url = '/api/client-manager/benefits/' + $scope.benefit.id;
+            var api_url = '/api/client-manager/service-benefit/' + $scope.benefit.id;
             var formData = $scope.benefit;
             formData.file = $scope.benefit.file;
             formData._method = "PUT";
@@ -4519,7 +4519,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                 };
                 this.saveNewBenefit = function (benefit, callback) {
 
-                    var api_url = '/api/client-manager/benefits';
+                    var api_url = '/api/client-manager/service-benefit';
                     benefit.service_plan_id = $scope.client.service_plan.id;
                     Upload.upload({
                             url: api_url,
@@ -4578,8 +4578,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
 
 
 }());
-(function (window) {
-    window.Benefit = null;
+(function () {
     "use strict";
     var clientManagerApp = angular.module('client-manager-app', ['module-clients', 'module-servicePlan']).config(function ($httpProvider) {
         //@todo: configure middleware and auth for API
@@ -4590,11 +4589,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
         var self = this;
         var client = $scope.client;
         self.loaded = false;
-        window.Benefit = benefitFactory.new({
-            name: 'benegit',
-            description: "desc"
-        });
-        console.log(window.Benefit);
         this.clientFullyLoaded = function () {
             if (self.loaded) {
                 return true;
@@ -4872,7 +4866,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
     });
 
 
-}(window));
+}());
 
 
 
@@ -5116,7 +5110,7 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                 //this will only allow you to save one at a time, rather than batch save
                 self.buttonText = 'Saving...';
                 self.buttonDisabled = true;
-                var api_url = '/api/client-manager/service-plan/' + $scope.client.service_plan.id + "/log/" + self.formData.active_month.id;
+                var api_url = '/api/client-manager/service-month/'+self.formData.active_month.id;
                 $http.put(api_url, self.formData.active_month).then(function (response) {
                     var value = self.formData.active_month.hours_logged;
                     var active_month_index = $scope.client.service_plan.service_history.getMonthIndex(self.formData.active_month.id);
@@ -6080,6 +6074,4 @@ Circles.prototype.setText = function (newText) {
     };
     window.ClientDashboard = ClientDashboard;
 }(window, document));
-//# sourceMappingURL=dashboard.js.map
-
 //# sourceMappingURL=client-manager.js.map
