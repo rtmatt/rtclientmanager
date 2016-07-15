@@ -136,7 +136,7 @@
                 //this will only allow you to save one at a time, rather than batch save
                 self.buttonText = 'Saving...';
                 self.buttonDisabled = true;
-                var api_url = '/api/client-manager/service-plan/' + $scope.client.service_plan.id + "/log/" + self.formData.active_month.id;
+                var api_url = '/api/client-manager/service-month/'+self.formData.active_month.id;
                 $http.put(api_url, self.formData.active_month).then(function (response) {
                     var value = self.formData.active_month.hours_logged;
                     var active_month_index = $scope.client.service_plan.service_history.getMonthIndex(self.formData.active_month.id);

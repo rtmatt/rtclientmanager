@@ -10,14 +10,14 @@
             this.origionalBenefit = angular.copy(this.benefit);
         };
         this.delete = function () {
-            var api_url = '/api/client-manager/benefits/' + $scope.benefit.id;
+            var api_url = '/api/client-manager/service-benefit/' + $scope.benefit.id;
             $http.delete(api_url).then(function (response) {
                 //@todo:is there anything else we need to do here?
                 $scope.client.service_plan.benefits.remove($scope.benefit.id);
             });
         };
         this.save = function () {
-            var api_url = '/api/client-manager/benefits/' + $scope.benefit.id;
+            var api_url = '/api/client-manager/service-benefit/' + $scope.benefit.id;
             var formData = $scope.benefit;
             formData.file = $scope.benefit.file;
             formData._method = "PUT";
@@ -153,7 +153,7 @@
                 };
                 this.saveNewBenefit = function (benefit, callback) {
 
-                    var api_url = '/api/client-manager/benefits';
+                    var api_url = '/api/client-manager/service-benefit';
                     benefit.service_plan_id = $scope.client.service_plan.id;
                     Upload.upload({
                             url: api_url,
