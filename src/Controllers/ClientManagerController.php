@@ -38,17 +38,4 @@ class ClientManagerController extends Controller
         return view('rtclientmanager::manager.client-manager', compact('master_layout', 'clients', 'admin_mode'));
     }
 
-    public function getPriorityAlerts()
-    {
-        $master_layout = 'layouts.admin';
-
-
-        if(!view()->exists($master_layout)){
-            $master_layout = 'rtclientmanager::layouts.admin';
-        }
-        $alert_count = PriorityAlert::count();
-        $clients = \RTMatt\MonthlyService\Client::all();
-        return view('rtclientmanager::priority-alerts.index',compact('clients','alert_count','master_layout'));
-    }
-
 }
