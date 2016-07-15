@@ -9,10 +9,19 @@
 namespace RTMatt\MonthlyService\Controllers;
 
 use App\Http\Controllers\Controller;
-use GuzzleHttp\Client;
 
 class ClientManagerController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('auth', [
+            'except' => [
+
+            ]
+        ]);
+    }
+
 
     public function getIndex()
     {
@@ -20,10 +29,11 @@ class ClientManagerController extends Controller
 
         $clients = \RTMatt\MonthlyService\Client::all();
 
-        if(!view()->exists($master_layout)){
+        if ( ! view()->exists($master_layout)) {
             $master_layout = 'rtclientmanager::layouts.admin';
         }
-        $admin_mode=true;
-        return view('rtclientmanager::manager.client-manager',compact('master_layout','clients','admin_mode'));
+        $admin_mode = true;
+
+        return view('rtclientmanager::manager.client-manager', compact('master_layout', 'clients', 'admin_mode'));
     }
 }
