@@ -1,13 +1,13 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
-| Package Routes
+| Client Manager API
 |--------------------------------------------------------------------------
 */
-//Route::resource('api/client-manager/clients', '\RTMatt\MonthlyService\Controllers\Resource\ClientController');
 Route::group([ 'prefix' => 'api/client-manager' ], function () {
     Route::resource('clients','\RTMatt\MonthlyService\Controllers\Resource\ClientController',['only'=>['index','store','destroy']]);
+    Route::get('/summary',['uses'=>'\RTMatt\MonthlyService\Controllers\Resource\ClientController@getServicesSummary','as'=>'client-services-summary']);
+
     Route::resource('clients.service-plan','\RTMatt\MonthlyService\Controllers\Resource\ClientServicePlanController',['only'=>['index']]);
     Route::resource('clients.service-plan.benefits', '\RTMatt\MonthlyService\Controllers\Resource\ClientServicePlanBenefitController',['only'=>['update','store','destroy']]);
 
@@ -18,41 +18,19 @@ Route::group([ 'prefix' => 'api/client-manager' ], function () {
 
     Route::resource('service-benefit','\RTMatt\MonthlyService\Controllers\Resource\BenefitController');
 
+    Route::resource('priority-alert','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController');
+
     Route::controller('/', '\RTMatt\MonthlyService\Controllers\API\ClientManagerAPIController');
 });
-
-
-
-
-
 
 /*
-
-//Client Manager API
-// Cors middleware for allowing posting of priority alerts
-Route::group([ 'prefix' => 'api', 'middleware' => [ 'rtapi', 'cors' ] ], function () {
-    Route::controller('client-service', '\RTMatt\MonthlyService\Controllers\ClientServicesController', [
-        'getIndex' => 'client-services-summary'
-    ]);
-
-});
-
-//Client Manager API
-Route::group([ 'prefix' => 'api/client-manager' ], function () {
-    Route::group([ 'prefix' => 'clients' ], function () {
-
-    //Route::resource('benefits', '\RTMatt\MonthlyService\Controllers\API\ClientBenefitController');
-    Route::controller('service-plan/{service_plan}',
-        '\RTMatt\MonthlyService\Controllers\API\ClientServicePlanController');
-    Route::controller('/', '\RTMatt\MonthlyService\Controllers\API\ClientManagerAPIController');
-});
+|--------------------------------------------------------------------------
+| Client Manager Application
+|--------------------------------------------------------------------------
 */
-//Client Manager App Access
 Route::group([ 'prefix' => 'client-manager','middleware'=>['web']], function () {
-    //Show the Client Manager
+    Route::get('/priority-alerts','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController@index');
     Route::controller('', '\RTMatt\MonthlyService\Controllers\ClientManagerController');
-    // Resource Controller For Priotity Alerts
-
 });
 
 
