@@ -47,4 +47,15 @@ class ClientManagerAPIController extends Controller
         abort(404);
     }
 
+
+    public function getClientDashboard($client_id = null)
+    {
+        if(!$client_id){
+            return null;
+        }
+        $client = \RTMatt\MonthlyService\Client::find($client_id);
+        return view("rtclientdashboard::components.dashboard-component",['dashboard_data'=>$client->getServiceReport(),'dashboard_id'=>$client->id,'admin_mode'=>true]);
+
+    }
+
 }
