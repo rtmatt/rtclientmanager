@@ -1,7 +1,11 @@
+$fixed-client-breakpoint: 1300px;
+$btn-primary-bg:#2f2f2f;
 .RT-Dashboard-Form {
-  &--admin {
-
+  &--add-client {
+    border-top: none;
+    display: block;
   }
+
   textarea.RT-Dashboard-Form__form-control--textarea-2-tall {
     height: 128px;
   }
@@ -9,18 +13,18 @@
     &:not(.RT-Dashboard-Form__button-inline) {
       display: block;
       width: 100%;
-      &.RT-Dashboard-Form__button--delete-client{
+      &.RT-Dashboard-Form__button--delete-client {
         position: absolute;
-        bottom:0;
-        right:0;
-        padding:2px;
-        font-size:10px;
-        width:150px;
+        bottom: 0;
+        right: 0;
+        padding: 2px;
+        font-size: 10px;
+        width: 150px;
         background: transparent;
-        border-style:dotted;
-        border-color:#2f2f2f;
-        border-width:1px 0 0 1px;
-        color: lighten(#2f2f2f,20%);
+        border-style: dotted;
+        border-color: #2f2f2f;
+        border-width: 1px 0 0 1px;
+        color: lighten(#2f2f2f, 20%);
       }
     }
     + .RT-Dashboard-Form__button:not(:first-child) {
@@ -44,45 +48,39 @@
     margin-top: 0;
   }
 }
-.RT-Client-Manager{
-  padding: 0 15px;
-}
-
-.RT-Client-Manager .Dashboard-Loading {
-  width: 1142px;
-  margin: 0 auto;
-  height: 142px;
-  position: relative;
-}
-
-.RT-Client-Manager .Dashboard-Loading .Dashboard-Loading__image {
-  display: block;
-  margin: 0 auto;
-  top: 50%;
-  transform: translateY(-50%);
-  transform-style: preserve-3d;
-  position: relative;
-}
 
 .RT-Client-Manager {
-
+  padding: 0 15px;
+  .Dashboard-Loading {
+    width: 1142px;
+    margin: 0 auto;
+    height: 142px;
+    position: relative;
+    .Dashboard-Loading__image {
+      display: block;
+      margin: 0 auto;
+      top: 50%;
+      transform: translateY(-50%);
+      transform-style: preserve-3d;
+      position: relative;
+    }
+  }
   .Client-Wrap {
     background: $status-bar-bg;
-    padding:20px 20px;
-    .Client-Wrap__header{
+    padding: 20px 20px;
+    .Client-Wrap__header {
       padding-bottom: 20px;
       h2 {
-        margin:0;
+        margin: 0;
       }
 
     }
     .RT-Dashboard-Form__button {
       display: block;
-      width:100%;
-      margin-top:15px;
+      width: 100%;
+      margin-top: 15px;
 
     }
-
 
   }
   .RT-Client-Manager__client-list {
@@ -118,58 +116,54 @@
       }
     }
   }
-}
-.Client-Manager-Client__heading{
-  text-align: center;
-}
-.Client-Form__actions{
-  margin-top:30px;
-  > div:not(:first-child) .RT-Dashboard-Form__button{
-    margin-top:15px;
-    @media screen and (min-width:$tablet-portrait){
-        margin-top:0;
+  .Client-Manager-Client__heading {
+    text-align: center;
+  }
+  .Client-Form__actions {
+    margin-top: 30px;
+    > div:not(:first-child) .RT-Dashboard-Form__button {
+      margin-top: 15px;
+      @media screen and (min-width: $tablet-portrait) {
+        margin-top: 0;
+      }
     }
   }
-}
-$fixed-client-breakpoint:1300px;
-.RT-Client-Manager__row{
-  margin:0 -15px;
-  @include clearfix;
-  > div{
-    position: relative;
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-  }
-  @media screen and (min-width:$fixed-client-breakpoint){
-    .RT-Client-Manager__clients{
-      float:left;
-      width: percentage(2/12);
+  .RT-Client-Manager__row {
+    margin: 0 -15px;
+    @include clearfix;
+    > div {
+      position: relative;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
     }
-    .RT-Client-Manager__dashboards{
-      float:left;
-      width: percentage(10/12);
+    @media screen and (min-width: $fixed-client-breakpoint) {
+      .RT-Client-Manager__clients {
+        float: left;
+        width: percentage(2/12);
+      }
+      .RT-Client-Manager__dashboards {
+        float: left;
+        width: percentage(10/12);
+      }
     }
   }
-}
-.RT-Dashboard-Form--add-client{
-  border-top:none;
-  display: block;
-}
-.DashboardIconLabel__icon--log-backup{
-  height:18px;
-}
-.StatusBarSecondaryInformation__item--services{
-  cursor: pointer;
 
-}
-.RT-Client_Dashboard .services-icon{
-  margin:0 auto 15px auto;
-  float: none;
-  @media screen and (min-width:$screen-sm-min){
-      margin:0 auto;
+  .DashboardIconLabel__icon--log-backup {
+    height: 18px;
   }
-}
-.u--margin-top-30{
-  margin-top:30px!important;
+  .StatusBarSecondaryInformation__item--services {
+    cursor: pointer;
+
+  }
+  .RT-Client_Dashboard .services-icon {
+    margin: 0 auto 15px auto;
+    float: none;
+    @media screen and (min-width: $screen-sm-min) {
+      margin: 0 auto;
+    }
+  }
+  .u--margin-top-30 {
+    margin-top: 30px !important;
+  }
 }
