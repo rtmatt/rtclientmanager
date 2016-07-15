@@ -13,6 +13,10 @@ use RTMatt\MonthlyService\ServiceBenefit;
 
 class BenefitController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware(['web','auth']);
+    }
 
     public function update(Request $request, ServiceBenefit $service_benefit)
     {

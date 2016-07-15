@@ -16,6 +16,10 @@ use RTMatt\MonthlyService\ServicePlan;
 class ClientServicePlanBenefitController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware(['web','auth']);
+    }
 
     public function update(Request $request, $id)
     {

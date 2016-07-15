@@ -15,6 +15,17 @@ use RTMatt\MonthlyService\PriorityAlert;
 
 class PriorityAlertController extends Controller
 {
+
+    function __construct()
+    {
+
+        $this->middleware(['web','auth'],['only'=>['index']]);
+
+        $this->middleware('rtapi', [ 'only' => [ 'store' ] ]);
+
+    }
+
+
     public function index()
     {
         $master_layout = 'layouts.admin';

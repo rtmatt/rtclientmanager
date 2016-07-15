@@ -16,6 +16,24 @@ use RTMatt\MonthlyService\ServicePlan;
 class ClientController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware('web', [
+            'except' => [
+                'getServicesSummary',
+            ]
+        ]);
+        $this->middleware('auth', [
+            'except' => [
+                'getServicesSummary',
+            ]
+        ]);
+
+        $this->middleware('rtapi', [ 'only' => [ 'getServicesSummary' ] ]);
+
+    }
+
+
     public function index()
     {
         $clients = Client::select('id', 'name')->get()->toArray();
@@ -50,7 +68,8 @@ class ClientController extends Controller
     }
 
 
-    public function getServicePlan($client_id){
+    public function getServicePlan($client_id)
+    {
         $client                   = Client::findOrFail($client_id);
         $plan                     = $client->service_plan()->select('id', 'start_date', 'hours_available_month',
             'hours_available_year', 'standard_rate')->first();
@@ -62,7 +81,8 @@ class ClientController extends Controller
     }
 
 
-    public function getServicesSummary(Request $request){
+    public function getServicesSummary(Request $request)
+    {
         $authorization = $request->header('authorization');
         list( $auth_name, $auth_key ) = \RTMatt\MonthlyService\Helpers\RTBasicAuthorizationParser::create($authorization)->getParsedValues();
         $client = Client::getByAPIName($auth_name);
@@ -77,6 +97,7 @@ class ClientController extends Controller
         if ($report->last_backup instanceof Carbon) {
             $report->last_backup = $report->last_backup->diffForHumans();
         }
+
         return json_encode($report);
     }
 }

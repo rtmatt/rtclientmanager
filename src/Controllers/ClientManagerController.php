@@ -16,11 +16,7 @@ class ClientManagerController extends Controller
 
     function __construct()
     {
-        //$this->middleware('auth', [
-        //    'except' => [
-        //
-        //    ]
-        //]);
+       $this->middleware('auth');
     }
 
 

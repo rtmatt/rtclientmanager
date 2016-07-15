@@ -14,6 +14,11 @@ use RTMatt\MonthlyService\ServicePlan;
 class ServicePlanController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware(['web','auth']);
+    }
+
     public function update($service_plan, Request $request)
     {
         $month_string                       = $request->input('active_month')['name'];

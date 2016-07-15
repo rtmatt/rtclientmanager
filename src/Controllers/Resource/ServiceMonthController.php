@@ -13,7 +13,10 @@ use RTMatt\MonthlyService\ServiceMonth;
 
 class ServiceMonthController extends Controller
 {
-
+    function __construct()
+    {
+        $this->middleware(['web','auth']);
+    }
     
     public function update(ServiceMonth $service_month,Request $request){
         $input['hours_used']  = $request->input('hours_logged');

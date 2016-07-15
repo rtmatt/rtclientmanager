@@ -9,17 +9,20 @@
 namespace RTMatt\MonthlyService\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
-use RTMatt\MonthlyService\Client;
-use RTMatt\MonthlyService\ServicePlan;
 
 class ClientManagerAPIController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware([ 'web', 'auth' ]);
+    }
+
+
     public function getTemplates($slug)
     {
-        $view_slug = 'rtclientmanager::angular-templates.'.$slug;
-        if(\View::exists($view_slug)){
+        $view_slug = 'rtclientmanager::angular-templates.' . $slug;
+        if (\View::exists($view_slug)) {
             return view($view_slug);
         }
         abort(404);
@@ -28,11 +31,13 @@ class ClientManagerAPIController extends Controller
 
     public function getClientDashboard($client_id = null)
     {
-        if(!$client_id){
+        if ( ! $client_id) {
             return null;
         }
         $client = \RTMatt\MonthlyService\Client::find($client_id);
-        return view("rtclientdashboard::components.dashboard-component",['dashboard_data'=>$client->getServiceReport(),'dashboard_id'=>$client->id,'admin_mode'=>true]);
+
+        return view("rtclientdashboard::components.dashboard-component",
+            [ 'dashboard_data' => $client->getServiceReport(), 'dashboard_id' => $client->id, 'admin_mode' => true ]);
 
     }
 

@@ -14,6 +14,12 @@ use RTMatt\MonthlyService\Client;
 class ClientServicePlanController extends Controller
 {
 
+    function __construct()
+    {
+        $this->middleware(['web','auth']);
+    }
+
+
     public function index(Client $clients)
     {
         $plan                     = $clients->service_plan()->select('id', 'start_date', 'hours_available_month',
