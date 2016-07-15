@@ -38,7 +38,6 @@
                     var client_obj = clientFactory.new(client.id, client.name, function () {
                         clientCollection.add(client_obj, function () {
                             $scope.$broadcast('newClientAdded', client_obj, function (result) {
-                                console.log('running callback');
                                 client_obj.service_plan.benefits = result;
                             });
                             self.destroy();
@@ -111,7 +110,6 @@
             }
 
             confirmArchive(function(){
-                console.log('archiving client',client);
                 clientCollection.remove(client.id);
             });
         };

@@ -31,7 +31,6 @@
             archive:function(){
                 var url = '/api/client-manager/clients/'+this.id;
                 $http.delete(url).then(function(response){
-                    console.log(response);
                 });
             }
         };
@@ -80,7 +79,6 @@
                 return (this.clients.hasOwnProperty(id)) ? this.clients[id] : null;
             },
             remove:function(client_id){
-              console.log('removing client',client_id);
                 var client = this.clients[client_id];
                 client.archive();
                 delete this.clients[client_id];

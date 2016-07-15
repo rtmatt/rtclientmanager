@@ -100,7 +100,6 @@
             fields: ['id', 'name', 'icon', 'description'],
             save: function(){
                 if(!this.saved){
-                    console.log('saving',$http);
                     this.saved=true;
                 }
             }

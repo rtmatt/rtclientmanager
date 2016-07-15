@@ -130,7 +130,6 @@
         };
         this.saveLog = function () {
             self.submitted = true;
-            console.log($scope.clientUsageLogForm);
             if ($scope.clientUsageLogForm.$valid) {
                 self.submitting = true;
                 //this will only allow you to save one at a time, rather than batch save

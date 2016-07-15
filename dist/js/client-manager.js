@@ -4466,7 +4466,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             fields: ['id', 'name', 'icon', 'description'],
             save: function(){
                 if(!this.saved){
-                    console.log('saving',$http);
                     this.saved=true;
                 }
             }
@@ -4618,7 +4617,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                     var client_obj = clientFactory.new(client.id, client.name, function () {
                         clientCollection.add(client_obj, function () {
                             $scope.$broadcast('newClientAdded', client_obj, function (result) {
-                                console.log('running callback');
                                 client_obj.service_plan.benefits = result;
                             });
                             self.destroy();
@@ -4691,7 +4689,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             }
 
             confirmArchive(function(){
-                console.log('archiving client',client);
                 clientCollection.remove(client.id);
             });
         };
@@ -4906,7 +4903,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
             archive:function(){
                 var url = '/api/client-manager/clients/'+this.id;
                 $http.delete(url).then(function(response){
-                    console.log(response);
                 });
             }
         };
@@ -4955,7 +4951,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
                 return (this.clients.hasOwnProperty(id)) ? this.clients[id] : null;
             },
             remove:function(client_id){
-              console.log('removing client',client_id);
                 var client = this.clients[client_id];
                 client.archive();
                 delete this.clients[client_id];
@@ -5104,7 +5099,6 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
         };
         this.saveLog = function () {
             self.submitted = true;
-            console.log($scope.clientUsageLogForm);
             if ($scope.clientUsageLogForm.$valid) {
                 self.submitting = true;
                 //this will only allow you to save one at a time, rather than batch save
@@ -5988,7 +5982,7 @@ Circles.prototype.setText = function (newText) {
                         __toggleSubmitButton();
                         $.ajax({
                             type: 'POST',
-                            url: self.options.api_base_url + '/api/client-service/priority-alert',
+                            url: self.options.api_base_url + '/api/client-manager/priority-alert',
                             data: data,
                             contentType: false,
                             processData: false,
@@ -6074,4 +6068,6 @@ Circles.prototype.setText = function (newText) {
     };
     window.ClientDashboard = ClientDashboard;
 }(window, document));
+//# sourceMappingURL=dashboard.js.map
+
 //# sourceMappingURL=client-manager.js.map
