@@ -5778,10 +5778,10 @@ Circles.prototype.setText = function (newText) {
             }
             function resetMonthGraph(index){
                 var month_el = self.months[index];
-                month_el.dataset.hours_available=service_plan.hours_available_month;
                 month_el.dataset.hours_used = 0;
-                self.graphs[index]._maxValue = service_plan.hours_available_month;
                 self.drawMonth(index);
+                self.graphs[index]._maxValue = service_plan.hours_available_month;
+                month_el.dataset.hours_available=service_plan.hours_available_month;
                 resetMonthLabel(month_el,index);
             }
             for (var i = 0; i < this.months.length; i++) {
