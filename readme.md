@@ -32,7 +32,7 @@ in config/cors.php
     'hosts' => [],
 ```
 
-
+Make sure wrapper has authentication middleware defined 
 
 
 
