@@ -6068,6 +6068,4 @@ Circles.prototype.setText = function (newText) {
     };
     window.ClientDashboard = ClientDashboard;
 }(window, document));
-//# sourceMappingURL=dashboard.js.map
-
 //# sourceMappingURL=client-manager.js.map
