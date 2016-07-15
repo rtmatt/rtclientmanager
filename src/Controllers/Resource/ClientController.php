@@ -8,6 +8,7 @@
 namespace RTMatt\MonthlyService\Controllers\Resource;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use RTMatt\MonthlyService\Client;
 use RTMatt\MonthlyService\ServicePlan;
@@ -58,5 +59,24 @@ class ClientController extends Controller
 
         return json_encode($plan_array);
 
+    }
+
+
+    public function getServicesSummary(Request $request){
+        $authorization = $request->header('authorization');
+        list( $auth_name, $auth_key ) = \RTMatt\MonthlyService\Helpers\RTBasicAuthorizationParser::create($authorization)->getParsedValues();
+        $client = Client::getByAPIName($auth_name);
+        if ( ! $client) {
+            return response('Unable to find client data for supplied API key', 404);
+        }
+        if ( ! $client->hasActivePlan()) {
+            return response("Owner of API key does not have an active plan", 204);
+        }
+        $report = $client->getServiceReport();
+
+        if ($report->last_backup instanceof Carbon) {
+            $report->last_backup = $report->last_backup->diffForHumans();
+        }
+        return json_encode($report);
     }
 }
