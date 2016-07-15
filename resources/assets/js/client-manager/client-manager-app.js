@@ -1,5 +1,4 @@
-(function (window) {
-    window.Benefit = null;
+(function () {
     "use strict";
     var clientManagerApp = angular.module('client-manager-app', ['module-clients', 'module-servicePlan']).config(function ($httpProvider) {
         //@todo: configure middleware and auth for API
@@ -10,11 +9,6 @@
         var self = this;
         var client = $scope.client;
         self.loaded = false;
-        window.Benefit = benefitFactory.new({
-            name: 'benegit',
-            description: "desc"
-        });
-        console.log(window.Benefit);
         this.clientFullyLoaded = function () {
             if (self.loaded) {
                 return true;
@@ -292,7 +286,7 @@
     });
 
 
-}(window));
+}());
 
 
 
