@@ -22,7 +22,8 @@ class ClientManagerController extends Controller
 
     public function getIndex()
     {
-        $master_layout = 'layouts.admin';
+        $master_layout = config('rtclientmanager.layout_file');
+        $layout_section = config('rtclientmanager.layout_section');
 
         $clients = \RTMatt\MonthlyService\Client::all();
 
@@ -31,7 +32,7 @@ class ClientManagerController extends Controller
         }
         $admin_mode = true;
 
-        return view('rtclientmanager::manager.client-manager', compact('master_layout', 'clients', 'admin_mode'));
+        return view('rtclientmanager::manager.client-manager', compact('master_layout', 'clients', 'admin_mode','layout_section'));
     }
 
 }
