@@ -28,7 +28,7 @@ Route::group([ 'prefix' => 'api/client-manager' ], function () {
 | Client Manager Application
 |--------------------------------------------------------------------------
 */
-Route::group([ 'prefix' => 'client-manager','middleware'=>['web']], function () {
+Route::group([ 'prefix' => config('rtclientmanager.client_manager_url'),'middleware'=>['web']], function () {
     Route::get('/priority-alerts','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController@index');
     Route::controller('', '\RTMatt\MonthlyService\Controllers\ClientManagerController');
 });

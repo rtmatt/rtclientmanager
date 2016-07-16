@@ -1,5 +1,14 @@
 ##Installation
 
+Add Service Provider
+
+``` php 
+\RTMatt\MonthlyService\Providers\MonthlyServiceServiceProvider::class,
+'Barryvdh\Cors\ServiceProvider',
+```
+
+
+
 ###Publish Migrations
 
 ``` bash 
