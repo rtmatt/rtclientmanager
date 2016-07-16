@@ -74,5 +74,12 @@ php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlySe
 ```
 
 
+Register middleware
+in app/http/kernel
+
+```  
+'rtapi' => \RTMatt\MonthlyService\Middleware\RTAPIMiddleware::class
+```
+
 
 

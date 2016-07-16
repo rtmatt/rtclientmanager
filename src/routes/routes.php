@@ -18,7 +18,10 @@ Route::group([ 'prefix' => 'api/client-manager' ], function () {
 
     Route::resource('service-benefit','\RTMatt\MonthlyService\Controllers\Resource\BenefitController',['only'=>['update','store','destroy']]);
 
-    Route::resource('priority-alert','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController',['only'=>['index','store']]);
+
+    Route::group(['middleware' => 'cors'], function(){
+        Route::resource('priority-alert','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController',['only'=>['index','store']]);
+    });
 
     Route::controller('/', '\RTMatt\MonthlyService\Controllers\API\ClientManagerAPIController');
 });
