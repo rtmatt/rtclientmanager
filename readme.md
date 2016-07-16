@@ -10,7 +10,7 @@
 composer require rtmatt/rtclientmanager
 ```
 ###Add Service Providers
-
+Note: you may need to add this before the route service provider to ensure the proper routes are registered
 ``` php 
 \RTMatt\MonthlyService\Providers\MonthlyServiceServiceProvider::class,
 'Barryvdh\Cors\ServiceProvider',
