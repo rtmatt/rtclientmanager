@@ -74,6 +74,15 @@ Make you have the following in your admin layout:
      <link href='{{asset('vendor/rtclientmanager/css/client-manager.css')}}' rel='stylesheet'>
 ```
 
+For the Priortity Alert Manager to Work, you Need bootstraps js
+``` html 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+```
+
+And add this before the closing body tag
+``` html 
+<script src="{{asset('/vendor/rtclientmanager/js/client-manager.js')}}"></script>
+```
 ### Configuration
 You can publish configs with the following command
 
