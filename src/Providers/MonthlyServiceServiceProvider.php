@@ -16,6 +16,7 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
 
         $this->mergeConfigFrom(__DIR__ . '/../../config/rtclientmanager.php', 'rtclientmanager');
 
+        $this->registerDependency();
 
     }
 
@@ -43,10 +44,26 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
 
         $this->publishes([$this->configPath() => config_path('rtclientmanager.php')],'config');
 
+        $this->bootDependency();
     }
 
     protected function configPath()
     {
         return __DIR__ . '/../../config/rtclientmanager.php';
+    }
+
+
+    private function bootDependency()
+    {
+        $this->publishes([
+            __DIR__.'/../../../rtclientdashboard/dist/' => public_path('vendor/rtclientdashboard'),
+        ], 'public');
+    }
+
+
+    private function registerDependency()
+    {
+        $path = __DIR__ . '/../../../rtclientdashboard/resources/views';
+        $this->loadViewsFrom($path, 'rtclientdashboard');
     }
 }
