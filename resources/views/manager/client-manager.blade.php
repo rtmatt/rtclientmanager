@@ -101,7 +101,7 @@
                         <div ng-controller="clientDashboardsController as dashboards">
                             <h1 class="Client-Manager-Client__heading">@{{client.name}}</h1>
                             <div ng-if="!dashboards.clientFullyLoaded()" class="RT-Client-Manager Dashboard-Loading">
-                                <img class="Dashboard-Loading__image" src="/images/loading.svg" alt=""/>
+                                <img class="Dashboard-Loading__image" src="/vendor/rtclientmanager/images/loading.svg" alt=""/>
                             </div>
                             <dashboard ng-show="dashboards.clientFullyLoaded()" id="client_dashboard_@{{client.id}}"></dashboard>
                         </div>
