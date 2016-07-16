@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <link href='{{asset('/css/client-manager.css')}}' rel='stylesheet'>
+    <link href='{{asset('vendor/rtclientmanager/css/client-manager.css')}}' rel='stylesheet'>
     <style>
         em{
             color: #808080;
@@ -61,12 +61,7 @@
 <div class="admin-wrapper">
     @yield('content')
 </div>
-
-{{--//@todo: remove this hosted jquery--}}
-<script src="/js/jquery.min.js"></script>
-{{--<script src="https://code.jquery.com/jquery-2.2.3.min.js"--}}
-        {{--integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>--}}
-@yield('footer')
+<script src="{{asset('/vendor/rtclientmanager/js/client-manager.js')}}"></script>
 
 </body>
 </html>

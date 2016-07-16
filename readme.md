@@ -1,5 +1,9 @@
 ##Installation
 
+Prerequisites:
+Laravel 5.*
+Auth Set Up
+
 Add Service Provider
 
 ``` php 
@@ -20,6 +24,13 @@ php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlySe
 ``` bash 
 php artisan migrate
 ```
+
+Publish public assets
+
+``` bash 
+php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlyServiceServiceProvider" --tag="public"
+```
+
 
 Configure CORS
 

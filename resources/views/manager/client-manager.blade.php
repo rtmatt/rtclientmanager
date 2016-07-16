@@ -1,7 +1,5 @@
 @extends($master_layout)
 @section('content')
-
-
     <div class="RT-Client-Manager" id="js--RT-Client-Manager-Wrap" ng-app="client-manager-app">
         <div class="RT-Client-Manager__row" ng-controller="clientManagerController as clientManager">
             <div class="RT-Client-Manager__clients">
@@ -112,9 +110,4 @@
             </div>
         </div>
     </div>
-    <script src="{{asset('/vendor/rtclientmanager/js/client-manager.js')}}"></script>
-@endsection
-@section('footer')
-    {{--<script src='/js/dashboard.js'></script>--}}
-
 @endsection
