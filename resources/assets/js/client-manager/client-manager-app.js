@@ -33,7 +33,7 @@
             this.submitted = true;
             if ($scope.clientAddForm.$valid) {
                 this.formData.start_date = this.formData.date.unix();
-                $http.post('/api/client-manager/clients/', this.formData).then(function (response) {
+                $http.post('/api/client-manager/clients', this.formData).then(function (response) {
                     var client = response.data.client;
                     var client_obj = clientFactory.new(client.id, client.name, function () {
                         clientCollection.add(client_obj, function () {
