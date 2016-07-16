@@ -116,23 +116,20 @@ class PriorityAlertProcessor
 
 
 
-        try{
-        \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
+        \Mail::send('rtclientmanager::emails.home-notification', compact('alert'),
             function ($m) use ($alert, $info_dict, $attachFile) {
                 $m->from('noreply@designledge.com', 'DESIGNLEDGE');
                 $m->to($info_dict['to'], $info_dict['to_name']);
                 if (array_key_exists('cc', $info_dict)) {
                     $m->cc($info_dict['cc'], $info_dict['cc_name']);
                 }
-                $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']);
+                $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']  );
                 if (count($attachFile) > 0) {
 
                     $m->attach($attachFile['path'],
                         [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
                 }
             });
-        }catch(\Exception $e){
-            dd($e);
         }
     }
 }
