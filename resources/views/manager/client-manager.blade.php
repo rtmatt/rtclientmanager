@@ -5,7 +5,7 @@
             <div class="RT-Client-Manager__clients">
                 <div class="Client-Wrap" fixed-fill>
                     <div class="Client-Wrap__header clearfix">
-                        <h2>Clients <small><a href="/client-manager/priority-alerts">Alerts</a></small></h2>
+                        <h2>Clients <small><a href="/{{config('rtclientmanager.client_manager_url')}}/priority-alerts">Alerts</a></small></h2>
                     </div>
                     <ul class="RT-Client-Manager__client-list">
                         <li ng-repeat="client in clients" ng-class="{active:clientManager.isActiveClient(client.id)}">
