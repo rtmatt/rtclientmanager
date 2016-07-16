@@ -62,6 +62,7 @@ class PriorityAlertController extends Controller
         try {
             \RTMatt\MonthlyService\PriorityAlertProcessor::process($request->all());
         } catch (\Exception $e) {
+            dd($e);
             return response('An error occurred processing the request', 500);
         }
 

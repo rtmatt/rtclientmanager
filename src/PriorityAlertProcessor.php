@@ -104,32 +104,32 @@ class PriorityAlertProcessor
             'cc_name' => $this->cc_name
 
         ];
-        $attachFile = [ ];
-        if (array_key_exists('attachment', $this->input)) {
-            $original_attachment     = $this->input['attachment'];
-            $attachFile              = [ ];
-            $attachFile['path']      = $original_attachment->getRealPath();
-            $attachFile['name']      = $original_attachment->getClientOriginalName();
-            $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
+        //$attachFile = [ ];
+        //if (array_key_exists('attachment', $this->input)) {
+        //    $original_attachment     = $this->input['attachment'];
+        //    $attachFile              = [ ];
+        //    $attachFile['path']      = $original_attachment->getRealPath();
+        //    $attachFile['name']      = $original_attachment->getClientOriginalName();
+        //    $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
+        //
+        //}
 
-        }
 
 
-
-        \Mail::send('rtclientmanager::emails.home-notification', compact('alert'),
-            function ($m) use ($alert, $info_dict, $attachFile) {
+        \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
+            function ($m) use ($alert, $info_dict/*, $attachFile*/) {
                 $m->from('noreply@designledge.com', 'DESIGNLEDGE');
                 $m->to($info_dict['to'], $info_dict['to_name']);
                 if (array_key_exists('cc', $info_dict)) {
                     $m->cc($info_dict['cc'], $info_dict['cc_name']);
                 }
                 $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']  );
-                if (count($attachFile) > 0) {
-
-                    $m->attach($attachFile['path'],
-                        [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
-                }
+                //if (count($attachFile) > 0) {
+                //
+                //    $m->attach($attachFile['path'],
+                //        [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
+                //}
             });
-        }
+
     }
 }
