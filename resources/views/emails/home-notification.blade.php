@@ -26,94 +26,86 @@
                         <td style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 100%; line-height: 1.6em; margin: 0; padding: 0;">
                             <img src="{{asset('/vendor/rtclientmanager/images/DL-logo.png')}}" alt="" style="display:block;margin:30px auto 0;width:496px;max-width:100%;"/>
                             <h1 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; text-align:center;margin: 40px 0 10px; padding: 0;">
-                                Priority Alert From {{$alert->client->name}}</h1>
+                                Priority Alert From {{$alert['client_name']}}</h1>
 
-                            @if($alert->actual)
+                            @if(array_key_exists('actual',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Actual
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->actual}}
+                                    {{$alert['actual']}}
                                 </p>
                             @endif
-                            @if($alert->expected)
+                            @if(array_key_exists('expected',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Expected
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->expected}}
+                                    {{$alert['expected']}}
                                 </p>
                             @endif
-                            @if($alert->frequency)
+                            @if(array_key_exists('frequency',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Frequency
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->frequency}}
+                                    {{$alert['frequency']}}
                                 </p>
                             @endif
-                            @if($alert->user_device)
+                            @if(array_key_exists('user_device',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Device
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->user_device}}
+                                    {{$alert['user_device']}}
                                 </p>
                             @endif
-                            @if($alert->user_browser)
+                            @if(array_key_exists('user_browser',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Browser
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->user_browser}}
+                                    {{$alert['user_browser']}}
                                 </p>
                             @endif
-                            @if($alert->user_browser_ver)
+                            @if(array_key_exists('user_browser_ver',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Browser Version
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->user_browser_ver}}
+                                    {{$alert['user_browser_ver']}}
                                 </p>
                             @endif
-                            @if($alert->contact_name)
+                            @if(array_key_exists('contact_name',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Contact Name
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->contact_name}}
+                                    {{$alert['contact_name']}}
                                 </p>
                             @endif
-                            @if($alert->contact_email)
+                            @if(array_key_exists('contact_email',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Contact Email
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->contact_email}}
+                                    {{$alert['contact_email']}}
                                 </p>
                             @endif
-                            @if($alert->contact_phone)
+                            @if(array_key_exists('contact_phone',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Contact Phone
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->contact_phone}}
+                                    {{$alert['contact_phone']}}
                                 </p>
                             @endif
-                            @if($alert->additional_info)
+                            @if(array_key_exists('additional_info',$alert))
                                 <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
                                     Additional Info
                                 </h2>
                                 <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    {{$alert->additional_info}}
-                                </p>
-                            @endif
-                            @if($alert->has_attachment)
-                                <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
-                                    Attachment
-                                </h2>
-                                <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
-                                    the client attached an image to the alert.
+                                    {{$alert['additional_info']}}
                                 </p>
                             @endif
                             You can view this whole alert in the admin panel.

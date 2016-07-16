@@ -94,7 +94,9 @@ class PriorityAlertProcessor
 
     private function notifyHome()
     {
-        $alert      = $this->alert;
+        $alert                = $this->alert->toArray();
+        $alert['client_name'] = $this->alert->client->name;
+
         $info_dict  = [
             'to'      => $this->home_email,
             'to_name' => $this->home_name,
@@ -103,19 +105,18 @@ class PriorityAlertProcessor
 
         ];
         $attachFile = [ ];
-        $alert->has_attachment=false;
         if (array_key_exists('attachment', $this->input)) {
-            $alert->has_attachment=true;
-        }
-        //if (array_key_exists('attachment', $this->input)) {
-        //    $original_attachment = $this->input['attachment'];
-        //    $attachFile              = [ ];
-        //    $attachFile['path']      = $original_attachment->getRealPath();
-        //    $attachFile['name']      = $original_attachment->getClientOriginalName();
-        //    $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
-        //
-        //}
+            $original_attachment     = $this->input['attachment'];
+            $attachFile              = [ ];
+            $attachFile['path']      = $original_attachment->getRealPath();
+            $attachFile['name']      = $original_attachment->getClientOriginalName();
+            $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
 
+        }
+
+
+
+        try{
         \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
             function ($m) use ($alert, $info_dict, $attachFile) {
                 $m->from('noreply@designledge.com', 'DESIGNLEDGE');
@@ -123,12 +124,15 @@ class PriorityAlertProcessor
                 if (array_key_exists('cc', $info_dict)) {
                     $m->cc($info_dict['cc'], $info_dict['cc_name']);
                 }
-                $m->subject('New DESIGNLEDGE Priority Alert - ' . $alert->client->name);
-                if (count($attachFile)>0) {
+                $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']);
+                if (count($attachFile) > 0) {
 
-                    //$m->attach($attachFile['path'],
-                    //    [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
+                    $m->attach($attachFile['path'],
+                        [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
                 }
             });
+        }catch(\Exception $e){
+            dd($e);
+        }
     }
 }
