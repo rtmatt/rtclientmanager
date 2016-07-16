@@ -108,6 +108,15 @@
                                     {{$alert->additional_info}}
                                 </p>
                             @endif
+                            @if($alert->has_attachment)
+                                <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif; font-size: 28px; line-height: 1.2em; color: #111111; font-weight: 200; margin: 40px 0 10px; padding: 0;">
+                                    Attachment
+                                </h2>
+                                <p style="font-family: 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.6em; font-weight: normal; margin: 0 0 10px; padding: 0;">
+                                    the client attached an image to the alert.
+                                </p>
+                            @endif
+                            You can view this whole alert in the admin panel.
                         </td>
                     </tr>
                 </table>

@@ -94,23 +94,27 @@ class PriorityAlertProcessor
 
     private function notifyHome()
     {
-        $alert     = $this->alert;
-        $info_dict = [
+        $alert      = $this->alert;
+        $info_dict  = [
             'to'      => $this->home_email,
             'to_name' => $this->home_name,
             'cc'      => $this->cc_email,
             'cc_name' => $this->cc_name
 
         ];
-        $attachFile              = [ ];
+        $attachFile = [ ];
+        $alert->has_attachment=false;
         if (array_key_exists('attachment', $this->input)) {
-            $original_attachment = $this->input['attachment'];
-            $attachFile              = [ ];
-            $attachFile['path']      = $original_attachment->getRealPath();
-            $attachFile['name']      = $original_attachment->getClientOriginalName();
-            $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
-
+            $alert->has_attachment=true;
         }
+        //if (array_key_exists('attachment', $this->input)) {
+        //    $original_attachment = $this->input['attachment'];
+        //    $attachFile              = [ ];
+        //    $attachFile['path']      = $original_attachment->getRealPath();
+        //    $attachFile['name']      = $original_attachment->getClientOriginalName();
+        //    $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
+        //
+        //}
 
         \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
             function ($m) use ($alert, $info_dict, $attachFile) {
@@ -122,8 +126,8 @@ class PriorityAlertProcessor
                 $m->subject('New DESIGNLEDGE Priority Alert - ' . $alert->client->name);
                 if (count($attachFile)>0) {
 
-                    $m->attach($attachFile['path'],
-                        [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
+                    //$m->attach($attachFile['path'],
+                    //    [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
                 }
             });
     }
