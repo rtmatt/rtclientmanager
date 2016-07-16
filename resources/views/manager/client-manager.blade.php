@@ -1,12 +1,11 @@
 @extends($master_layout)
-@section('content')
+@section($layout_section)
     <div class="RT-Client-Manager" id="js--RT-Client-Manager-Wrap" ng-app="client-manager-app">
         <div class="RT-Client-Manager__row" ng-controller="clientManagerController as clientManager">
             <div class="RT-Client-Manager__clients">
                 <div class="Client-Wrap" fixed-fill>
                     <div class="Client-Wrap__header clearfix">
                         <h2>Clients <small><a href="/client-manager/priority-alerts">Alerts</a></small></h2>
-
                     </div>
                     <ul class="RT-Client-Manager__client-list">
                         <li ng-repeat="client in clients" ng-class="{active:clientManager.isActiveClient(client.id)}">
