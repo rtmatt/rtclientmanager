@@ -112,9 +112,9 @@
             </div>
         </div>
     </div>
+    <script src="{{asset('/vendor/rtclientmanager/js/client-manager.js')}}"></script>
 @endsection
 @section('footer')
-    <script src="{{asset('js/client-manager.js')}}"></script>
     {{--<script src='/js/dashboard.js'></script>--}}
 
 @endsection
