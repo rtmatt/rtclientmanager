@@ -41,7 +41,12 @@ class MonthlyServiceServiceProvider extends ServiceProvider{
             require __DIR__.'/../routes/routes.php';
         }
 
-        $this->publishes([$this->configPath() => config_path('rtclientmanager.php')]);
+        $this->publishes([$this->configPath() => config_path('rtclientmanager.php')],'config');
 
+    }
+
+    protected function configPath()
+    {
+        return __DIR__ . '/../../config/rtclientmanager.php';
     }
 }

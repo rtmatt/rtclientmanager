@@ -44,6 +44,8 @@ in config/cors.php
 Make sure wrapper has authentication middleware defined 
 
 
+
+
 Admin layout
 
 ``` html 
@@ -51,6 +53,13 @@ Admin layout
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <link href='/vendor/rtclientmanager/css/client-manager.css' rel='stylesheet'>
+```
+
+Configuration
+Publish configs
+
+``` bash 
+php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlyServiceServiceProvider" --tag="config" 
 ```
 
 
