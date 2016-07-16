@@ -4,6 +4,11 @@
 | Client Manager API
 |--------------------------------------------------------------------------
 */
+
+Route::group([ 'prefix' => 'api/client-manager' ,'middleware' => 'cors'], function(){
+    Route::resource('priority-alert','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController',['only'=>['index','store']]);
+});
+
 Route::group([ 'prefix' => 'api/client-manager' ], function () {
     Route::resource('clients','\RTMatt\MonthlyService\Controllers\Resource\ClientController',['only'=>['index','store','destroy']]);
     Route::get('/summary',['uses'=>'\RTMatt\MonthlyService\Controllers\Resource\ClientController@getServicesSummary','as'=>'client-services-summary']);
@@ -17,11 +22,6 @@ Route::group([ 'prefix' => 'api/client-manager' ], function () {
     Route::resource('service-month','\RTMatt\MonthlyService\Controllers\Resource\ServiceMonthController',['only'=>['update']]);
 
     Route::resource('service-benefit','\RTMatt\MonthlyService\Controllers\Resource\BenefitController',['only'=>['update','store','destroy']]);
-
-
-    Route::group(['middleware' => 'cors'], function(){
-        Route::resource('priority-alert','\RTMatt\MonthlyService\Controllers\Resource\PriorityAlertController',['only'=>['index','store']]);
-    });
 
     Route::controller('/', '\RTMatt\MonthlyService\Controllers\API\ClientManagerAPIController');
 });
