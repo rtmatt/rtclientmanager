@@ -16,7 +16,8 @@ class ClientServicePlanController extends Controller
 
     function __construct()
     {
-        $this->middleware(['web','auth']);
+        $this->middleware('web');
+        $this->middleware('auth');
     }
 
 

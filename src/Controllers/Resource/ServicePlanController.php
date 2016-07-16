@@ -16,7 +16,8 @@ class ServicePlanController extends Controller
 
     function __construct()
     {
-        $this->middleware(['web','auth']);
+        $this->middleware('web');
+        $this->middleware('auth');
     }
 
     public function update($service_plan, Request $request)

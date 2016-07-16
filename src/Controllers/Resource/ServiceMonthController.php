@@ -15,7 +15,8 @@ class ServiceMonthController extends Controller
 {
     function __construct()
     {
-        $this->middleware(['web','auth']);
+        $this->middleware('web');
+        $this->middleware('auth');
     }
     
     public function update(ServiceMonth $service_month,Request $request){

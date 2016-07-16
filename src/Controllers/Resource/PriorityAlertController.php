@@ -19,7 +19,9 @@ class PriorityAlertController extends Controller
     function __construct()
     {
 
-        $this->middleware(['web','auth'],['only'=>['index']]);
+
+        $this->middleware('web',['only'=>['index']]);
+        $this->middleware('auth',['only'=>['index']]);
 
         $this->middleware('rtapi', [ 'only' => [ 'store' ] ]);
 
