@@ -2,7 +2,7 @@
 @section('content')
 <div class="container">
     <h1>Priority Alerts <small>
-            <a href="/client-manager">Client Manager</a></small></h1>
+            <a href="/{{config('rtclientmanager.client_manager_url')}}">Client Manager</a></small></h1>
 
     @if($alert_count>0)
 
