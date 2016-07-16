@@ -1,7 +1,7 @@
 {
   "name": "rtmatt/rtclientmanager",
   "require": {
-    "rtmatt/rtclientdashboard": "dev-master",
+    "rtmatt/rtclientdashboard": "0.0.2",
     "barryvdh/laravel-cors": "^0.8.1"
   },
   "authors": [
