@@ -104,15 +104,6 @@ class PriorityAlertProcessor
             'cc_name' => $this->cc_name
 
         ];
-        //$attachFile = [ ];
-        //if (array_key_exists('attachment', $this->input)) {
-        //    $original_attachment     = $this->input['attachment'];
-        //    $attachFile              = [ ];
-        //    $attachFile['path']      = $original_attachment->getRealPath();
-        //    $attachFile['name']      = $original_attachment->getClientOriginalName();
-        //    $attachFile['extension'] = $original_attachment->getClientOriginalExtension();
-        //
-        //}
 
 
 
@@ -124,11 +115,6 @@ class PriorityAlertProcessor
                     $m->cc($info_dict['cc'], $info_dict['cc_name']);
                 }
                 $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']  );
-                //if (count($attachFile) > 0) {
-                //
-                //    $m->attach($attachFile['path'],
-                //        [ 'as' => $attachFile['name'], 'mime' => $attachFile['extension'] ]);
-                //}
             });
 
     }
