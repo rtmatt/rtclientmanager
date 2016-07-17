@@ -13,18 +13,26 @@ class PriorityAlertProcessor
 
     protected $input;
 
-    protected $home_email = "team@designledge.com";
+    protected $home_email;
 
-    protected $home_name = "DESIGNLEDGE Team";
+    protected $home_name;
 
-    protected $cc_email = "ridethe@redtrainwebservices.com";
+    protected $cc_email;
 
-    protected $cc_name = "RedTrain Team";
+    protected $cc_name;
 
 
     function __construct($input)
     {
         $this->input = $input;
+
+        $this->home_email = config('rtclientmanager.notification_email.email');
+        $this->home_name  = config('rtclientmanager.notification_email.name');
+        $this->cc_email   = config('rtclientmanager.notification_email_cc.email');
+        $this->cc_name    = config('rtclientmanager.notification_email_cc.name');
+
+
+
     }
 
 
@@ -97,24 +105,24 @@ class PriorityAlertProcessor
         $alert                = $this->alert->toArray();
         $alert['client_name'] = $this->alert->client->name;
 
-        $info_dict  = [
+        $info_dict = [
             'to'      => $this->home_email,
             'to_name' => $this->home_name,
-            'cc'      => $this->cc_email,
-            'cc_name' => $this->cc_name
-
         ];
-
+        if($this->cc_email!==null){
+            $info_dict['cc'] = $this->cc_email;
+            $info_dict['cc_name'] = $this->cc_name;
+        }
 
 
         \Mail::queue('rtclientmanager::emails.home-notification', compact('alert'),
             function ($m) use ($alert, $info_dict/*, $attachFile*/) {
-                $m->from('noreply@designledge.com', 'DESIGNLEDGE');
+                $m->from(config('rtclientmanager.notification_email_origin.email'), config('rtclientmanager.notification_email_origin.name'));
                 $m->to($info_dict['to'], $info_dict['to_name']);
                 if (array_key_exists('cc', $info_dict)) {
                     $m->cc($info_dict['cc'], $info_dict['cc_name']);
                 }
-                $m->subject('New DESIGNLEDGE Priority Alert - ' .$alert['client_name']  );
+                $m->subject('New DESIGNLEDGE Priority Alert - ' . $alert['client_name']);
             });
 
     }

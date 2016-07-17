@@ -90,5 +90,18 @@ You can publish configs with the following command
 php artisan vendor:publish --provider="RTMatt\MonthlyService\Providers\MonthlyServiceServiceProvider" --tag="config" 
 ```
 
+## Available .env Configs
+
+```  
+RTDB_HOME_EMAIL_NAME=the name for PA email target
+RTDB_HOME_EMAIL=the email address target for PA mail
+RTDB_HOME_EMAIL_NAME_CC=the name for PA CC email target - null to turn off CC
+RTDB_HOME_EMAIL_CC=the email address for PA CC email target - null to turn off CC
+RTDB_ORIGIN_EMAIL_NAME=PA From email name
+RTDB_ORIGIN_EMAIL=PA From email email address
+```
+
+
+
 
 
