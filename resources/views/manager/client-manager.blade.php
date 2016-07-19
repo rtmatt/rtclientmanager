@@ -52,25 +52,25 @@
                                 <legend>Plan Info</legend>
                                 <div class="RT-Dashboard-Form__row">
                                     <div class="RT-Dashboard-Form__col-tp-25 form-group" ng-class="{'has-error':(clientAddForm.hours_available_month.$error.required ||clientAddForm.hours_available_month.$error.integer) && clientAdd.submitted}">
-                                        <label class="control-label" for="">Hours Available Month</label>
+                                        <label class="control-label" for="">Monthly Flex Hours</label>
                                         <input name="hours_available_month" integer required class="form-control" type="text" ng-model="clientAdd.formData.hours_available_month"/>
                                         <span class="help-block" ng-show="clientAddForm.hours_available_month.$error.required && clientAdd.submitted">Required!</span>
                                         <span class="help-block" ng-show="clientAddForm.hours_available_month.$error.integer && clientAdd.submitted">This has to be an integer</span>
                                     </div>
                                     <div class="RT-Dashboard-Form__col-tp-25 form-group" ng-class="{'has-error':(clientAddForm.hours_available_year.$error.required ||clientAddForm.hours_available_year.$error.integer) && clientAdd.submitted}">
-                                        <label class="control-label" for="">Hours Available Year</label>
+                                        <label class="control-label" for="">Total Annual Hours</label>
                                         <input name="hours_available_year" integer required class="form-control" type="text" ng-model="clientAdd.formData.hours_available_year"/>
                                         <span class="help-block" ng-show="clientAddForm.hours_available_year.$error.required && clientAdd.submitted">Required!</span>
                                         <span class="help-block" ng-show="clientAddForm.hours_available_year.$error.integer && clientAdd.submitted">This has to be an integer</span>
                                     </div>
                                     <div class="RT-Dashboard-Form__col-tp-25 form-group" ng-class="{'has-error':(clientAddForm.standard_rate.$error.required ||clientAddForm.standard_rate.$error.integer) && clientAdd.submitted}">
-                                        <label class="control-label" for="">Standard Rate</label>
+                                        <label class="control-label" for="">Standard Hourly Rate</label>
                                         <input name="standard_rate" integer required class="form-control" type="text" ng-model="clientAdd.formData.standard_rate"/>
                                         <span class="help-block" ng-show="clientAddForm.standard_rate.$error.required && clientAdd.submitted">Required!</span>
                                         <span class="help-block" ng-show="clientAddForm.standard_rate.$error.integer && clientAdd.submitted">This has to be an integer</span>
                                     </div>
                                     <div class="RT-Dashboard-Form__col-tp-25 form-group" style="position:relative" ng-class="{'has-error':(clientAddForm.date.$error.required || clientAddForm.date.$error.moment) && clientAdd.submitted}">
-                                        <label class="control-label" for="">Start Date</label>
+                                        <label class="control-label" for="">First Billable Month</label>
                                         <input name="date" required monthpicker moment class="form-control" type="text" ng-model="clientAdd.formData.date"/>
                                         <span class="help-block" ng-show="clientAddForm.date.$error.required && clientAdd.submitted">Required!</span>
                                         <span class="help-block" ng-show="clientAddForm.date.$error.moment && clientAdd.submitted">Use the Datepicker to Pick a date</span>

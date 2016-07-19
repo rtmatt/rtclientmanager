@@ -4,7 +4,7 @@
         <div class="col-sm-3">
             <div class="form-group" style="position:relative;"
                  ng-class="{'has-error':(clientAddForm.date.$error.required || clientAddForm.date.$error.moment) && clientAdd.submitted}">
-                <label class="RT-Dashboard-Form__label" for="">Start Month</label>
+                <label class="RT-Dashboard-Form__label" for="">First Billable Month</label>
                 <input name="date" required monthpicker moment class="RT-Dashboard-Form__form-control" type="text"
                        ng-disabled="!planEdit.editMode"
                        ng-change="planEdit.selectMonth(planEdit.formData.active_month.name)"
@@ -15,19 +15,19 @@
         <div class="col-sm-7">
             <div class="row">
                 <div class="col-sm-4">
-                    <label class="RT-Dashboard-Form__label" for="">Annual Hours</label>
+                    <label class="RT-Dashboard-Form__label" for="">Total Annual Hours</label>
                     <input class="RT-Dashboard-Form__form-control js--Plan-Edit-Input" ng-model="planEdit.formData.hours_available_year"
                            type="text"
                            ng-disabled="!planEdit.editMode">
                 </div>
                 <div class="col-sm-4">
-                    <label class="RT-Dashboard-Form__label" for="">Monthly Hours</label>
+                    <label class="RT-Dashboard-Form__label" for="">Monthly Flex Hours</label>
                     <input class="RT-Dashboard-Form__form-control js--Plan-Edit-Input" ng-model="planEdit.formData.hours_available_month"
                            type="text"
                            ng-disabled="!planEdit.editMode">
                 </div>
                 <div class="col-sm-4">
-                    <label class="RT-Dashboard-Form__label" for="">Standard Rate</label>
+                    <label class="RT-Dashboard-Form__label" for="">Standard Hourly Rate</label>
                     <input class="RT-Dashboard-Form__form-control js--Plan-Edit-Input" ng-model="planEdit.formData.standard_rate"
                            type="text"
                            ng-disabled="!planEdit.editMode">
