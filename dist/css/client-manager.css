@@ -1482,7 +1482,15 @@ textarea.parsley-error {
     @media screen and (min-width: 768px) {
       .RT-Client-Manager .RT-Client_Dashboard .services-icon {
         margin: 0 auto; } }
-  .RT-Client-Manager .u--margin-top-30 {
-    margin-top: 30px !important; }
+
+.RT-Client-Manager .u--margin-top-30 {
+  margin-top: 30px !important; }
+
+.RT-Client-Manager .u-margin-top-0 {
+  margin-top: 0 !important; }
+
+.RT-Client-Manager .rtcm-heading {
+  border-bottom: solid 1px #DFDFDF;
+  margin-bottom: 25px; }
 
 /*# sourceMappingURL=client-manager.css.map */

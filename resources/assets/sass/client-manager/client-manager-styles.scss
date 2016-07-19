@@ -163,7 +163,18 @@ $btn-primary-bg:#2f2f2f;
       margin: 0 auto;
     }
   }
+
+}
+
+.RT-Client-Manager{
   .u--margin-top-30 {
     margin-top: 30px !important;
+  }
+  .u-margin-top-0{
+    margin-top:0!important;
+  }
+  .rtcm-heading{
+    border-bottom: solid 1px #DFDFDF;
+    margin-bottom:25px;
   }
 }
