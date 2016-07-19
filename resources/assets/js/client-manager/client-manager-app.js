@@ -101,11 +101,11 @@
         };
         this.archiveClient = function(client){
             function confirmArchive(callback){
-                //if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
+                if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
                     if(typeof callback==='function'){
                         callback();
                     }
-                //}
+                }
 
             }
 

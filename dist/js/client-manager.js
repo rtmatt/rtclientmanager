@@ -4835,11 +4835,11 @@ c){var e=a|0,f=c;void 0===f&&(f=Math.min(b(a),3));Math.pow(10,f);return 1==e&&0=
         };
         this.archiveClient = function(client){
             function confirmArchive(callback){
-                //if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
+                if(confirm('By archiving a client, you will also remove all their usage data which cannot be recovered.  Would you like to continue?')){
                     if(typeof callback==='function'){
                         callback();
                     }
-                //}
+                }
 
             }
 
