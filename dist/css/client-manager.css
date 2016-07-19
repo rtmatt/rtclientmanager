@@ -797,10 +797,10 @@ textarea.parsley-error {
     padding: 5px 0 0 5px;
     display: block;
     background: no-repeat 5px center #2f2f2f;
-    background-image: url("/vendor/rtclientdashboard/images/dl-logo-white.png");
+    background-image: url("/vendor/rtclientdashboard/images/dl-white.svg");
     transition: background-image 0.3s ease; }
     .RT-Client_Dashboard .RT-Dashboard__Status-bar .BrandBar:hover {
-      background-image: url("/vendor/rtclientdashboard/images/dl-logo-green.png"); }
+      background-image: url("/vendor/rtclientdashboard/images/dl-green.svg"); }
     @media screen and (min-width: 768px) {
       .RT-Client_Dashboard .RT-Dashboard__Status-bar .BrandBar {
         position: absolute;
