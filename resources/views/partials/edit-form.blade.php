@@ -1,6 +1,7 @@
 <div class="js--Dashboard-Admin-Form">
     <fieldset class="row js--Plan-Details-Wrap"
               ng-controller="clientDashboardPlanEditController as planEdit">
+        <h2 class="rtcm-heading u-margin-top-0">Dashboard Plan</h2>
         <div class="col-sm-3">
             <div class="form-group" style="position:relative;"
                  ng-class="{'has-error':(clientAddForm.date.$error.required || clientAddForm.date.$error.moment) && clientAdd.submitted}">
@@ -55,6 +56,7 @@
     <hr/>
     <form novalidate name="clientUsageLogForm" ng-controller="clientDashboardPlanLogController as log">
         <fieldset class="row js--Month-Information-Wrap" >
+            <h2 class="rtcm-heading">Work Completed</h2>
             <div class="col-sm-3">
                 <div class="form-group">
                 <label class="RT-Dashboard-Form__label" for="">Select Month</label>
@@ -87,6 +89,7 @@
         </fieldset>
     </form>
     {{--<hr/>--}}
+    <h2 class="rtcm-heading">Monthly Benefits</h2>
     <benefits></benefits>
     <button class="RT-Dashboard-Form__button RT-Dashboard-Form__button--danger RT-Dashboard-Form__button--delete-client" ng-click="clientManager.archiveClient(client)">Archive Client</button>
 </div>
