@@ -1013,10 +1013,10 @@ textarea.parsley-error {
     .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarAlertButton--button-active {
       background-color: #d50000; }
 
-.RT-Client_Dashboard .modal-open {
+.modal-open {
   overflow: hidden; }
 
-.RT-Client_Dashboard .modal {
+.modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -1028,23 +1028,23 @@ textarea.parsley-error {
   -webkit-overflow-scrolling: touch;
   outline: 0; }
 
-.RT-Client_Dashboard .modal.fade .modal-dialog {
+.modal.fade .modal-dialog {
   transition: transform .3s ease-out;
   transform: translate(0, -25%); }
 
-.RT-Client_Dashboard .modal.in .modal-dialog {
+.modal.in .modal-dialog {
   transform: translate(0, 0); }
 
-.RT-Client_Dashboard .modal-open .modal {
+.modal-open .modal {
   overflow-x: hidden;
   overflow-y: auto; }
 
-.RT-Client_Dashboard .modal-dialog {
+.modal-dialog {
   position: relative;
   width: auto;
   margin: 10px; }
 
-.RT-Client_Dashboard .modal-content {
+.modal-content {
   position: relative;
   background-color: #fff;
   background-clip: padding-box;
@@ -1054,7 +1054,7 @@ textarea.parsley-error {
   outline: 0;
   box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5); }
 
-.RT-Client_Dashboard .modal-backdrop {
+.modal-backdrop {
   position: fixed;
   top: 0;
   right: 0;
@@ -1063,45 +1063,45 @@ textarea.parsley-error {
   z-index: 1040;
   background-color: #000; }
 
-.RT-Client_Dashboard .modal-backdrop.fade {
+.modal-backdrop.fade {
   filter: alpha(opacity=0);
   opacity: 0; }
 
-.RT-Client_Dashboard .modal-backdrop.in {
+.modal-backdrop.in {
   filter: alpha(opacity=50);
   opacity: .5; }
 
-.RT-Client_Dashboard .modal-header {
+.modal-header {
   padding: 15px;
   border-bottom: 1px solid #e5e5e5; }
 
-.RT-Client_Dashboard .modal-header .close {
+.modal-header .close {
   margin-top: -2px; }
 
-.RT-Client_Dashboard .modal-title {
+.modal-title {
   margin: 0;
   line-height: 1.42857143; }
 
-.RT-Client_Dashboard .modal-body {
+.modal-body {
   position: relative;
   padding: 15px; }
 
-.RT-Client_Dashboard .modal-footer {
+.modal-footer {
   padding: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5; }
 
-.RT-Client_Dashboard .modal-footer .btn + .btn {
+.modal-footer .btn + .btn {
   margin-bottom: 0;
   margin-left: 5px; }
 
-.RT-Client_Dashboard .modal-footer .btn-group .btn + .btn {
+.modal-footer .btn-group .btn + .btn {
   margin-left: -1px; }
 
-.RT-Client_Dashboard .modal-footer .btn-block + .btn-block {
+.modal-footer .btn-block + .btn-block {
   margin-left: 0; }
 
-.RT-Client_Dashboard .modal-scrollbar-measure {
+.modal-scrollbar-measure {
   position: absolute;
   top: -9999px;
   width: 50px;
@@ -1109,29 +1109,31 @@ textarea.parsley-error {
   overflow: scroll; }
 
 @media (min-width: 768px) {
-  .RT-Client_Dashboard .modal-dialog {
+  .modal-dialog {
     width: 600px;
     margin: 30px auto; }
-  .RT-Client_Dashboard .modal-content {
+  .modal-content {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); }
-  .RT-Client_Dashboard .modal-sm {
+  .modal-sm {
     width: 300px; } }
 
 @media (min-width: 992px) {
-  .RT-Client_Dashboard .modal-lg {
+  .modal-lg {
     width: 900px; } }
 
 .RT-Client_Dashboard .modal-title {
   text-transform: uppercase; }
 
 .RT-Client_Dashboard .modal-body {
-  border-bottom: 1px solid #dfdfdf;
   width: 90%;
   margin: 0 auto;
-  padding: 30px 0 20px 0; }
+  padding-top: 0; }
 
-.RT-Client_Dashboard .modal-body:last-of-type {
-  border-bottom: 0; }
+.RT-Client_Dashboard .modal-item {
+  border-bottom: 1px solid #dfdfdf;
+  padding: 30px 0 20px 0; }
+  .RT-Client_Dashboard .modal-item:last-child {
+    border-bottom: 0; }
 
 .RT-Client_Dashboard .modal-close-btn {
   float: right;
