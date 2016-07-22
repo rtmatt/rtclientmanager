@@ -800,6 +800,7 @@ textarea.parsley-error {
     background-image: url("/vendor/rtclientdashboard/images/dl-white.svg");
     transition: background-image 0.3s ease; }
     .RT-Client_Dashboard .RT-Dashboard__Status-bar .BrandBar:hover {
+      text-decoration: none;
       background-image: url("/vendor/rtclientdashboard/images/dl-green.svg"); }
     @media screen and (min-width: 768px) {
       .RT-Client_Dashboard .RT-Dashboard__Status-bar .BrandBar {
