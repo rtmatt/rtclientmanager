@@ -77,7 +77,7 @@ class PriorityAlertProcessor
         \Mail::queue('rtclientmanager::emails.client-notification', compact('notification_name'),
             function ($m) use ($notification_email, $notification_name) {
                 $m->from(config('rtclientmanager.notification_email_origin.email'), config('rtclientmanager.notification_email_origin.name'));
-                $m->to($notification_email, $notification_name)->subject('We Received Your DESIGNLEDGE Priority Alert');
+                $m->to($notification_email, $notification_name)->subject('DESIGNLEDGE is on it');
             });
     }
 
