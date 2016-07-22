@@ -976,9 +976,49 @@ textarea.parsley-error {
       @media screen and (min-width: 768px) {
         .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services {
           padding: 6.5px; } }
+      .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon {
+        display: block;
+        margin: 0 auto;
+        position: relative;
+        height: 18px; }
+        @media screen and (min-width: 992px) {
+          .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon {
+            margin-bottom: 2px; } }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon:before, .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon:after {
+          content: " ";
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          z-index: 3;
+          background-repeat: no-repeat;
+          background-size: cover;
+          transition: opacity .3s ease;
+          display: block; }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon:before {
+          opacity: 1; }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon:after {
+          opacity: 0; }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--log-backup {
+          width: 18px; }
+          .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--log-backup:before {
+            background-image: url("/vendor/rtclientmanager/images/backup-btn-grey.svg"); }
+          .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--log-backup:after {
+            background-image: url("/vendor/rtclientmanager/images/backup-btn-white.svg"); }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--benefits {
+          width: 14px; }
+          .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--benefits:before {
+            background-image: url("/vendor/rtclientdashboard/images/view-services-grey.svg"); }
+          .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services .Dashboard-background-icon--benefits:after {
+            background-image: url("/vendor/rtclientdashboard/images/view-services-white.svg"); }
       .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services:hover {
         background-color: #9bd500;
         color: #ffffff; }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services:hover .Dashboard-background-icon:after {
+          opacity: 1; }
+        .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item--services:hover .Dashboard-background-icon:before {
+          opacity: 0; }
   .RT-Client_Dashboard .RT-Dashboard__Status-bar .StatusBarSecondaryInformation__item-text {
     padding: 0;
     margin: 0;
