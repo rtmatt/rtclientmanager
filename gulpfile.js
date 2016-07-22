@@ -39,10 +39,10 @@ elixir(function (mix) {
      | Copy files to project local for development purposes
      |--------------------------------------------------------------------------
      */
-    mix.copy('dist/js/client-manager.js', '../../../public/js/client-manager.js');
-    mix.copy('dist/js/client-manager.js.map', '../../../public/js/client-manager.js.map');
-    mix.copy('dist/css/client-manager.css', '../../../public/css/client-manager.css');
-    mix.copy('dist/css/client-manager.css.map', '../../../public/css/client-manager.css.map');
+    mix.copy('dist/js/client-manager.js', '../../../public/vendor/rtclientmanager/js/client-manager.js');
+    mix.copy('dist/js/client-manager.js.map', '../../../public/vendor/rtclientmanager/js/client-manager.js.map');
+    mix.copy('dist/css/client-manager.css', '../../../public/vendor/rtclientmanager/css/client-manager.css');
+    mix.copy('dist/css/client-manager.css.map', '../../../public/vendor/rtclientmanager/css/client-manager.css.map');
 
 
 });
