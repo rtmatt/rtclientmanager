@@ -9,14 +9,25 @@
 namespace RTMatt\MonthlyService\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use RTMatt\MonthlyService\Client;
 
 class ClientManagerAPIController extends Controller
 {
 
     function __construct()
     {
-        $this->middleware('web');
-        $this->middleware('auth');
+        $this->middleware('web', [
+            'except' => [
+                'postRecordBackup',
+            ]
+        ]);
+        $this->middleware('auth', [
+            'except' => [
+                'postRecordBackup',
+            ]
+        ]);
+        $this->middleware('rtapi', [ 'only' => [ 'postRecordBackup' ] ]);
     }
 
 
@@ -42,4 +53,20 @@ class ClientManagerAPIController extends Controller
 
     }
 
+
+    public function postRecordBackup(Request $request)
+    {
+        $client_id = $request->input('client_id');
+
+        $client = Client::find($client_id);
+        if ($client) {
+            $plan = $client->service_plan;
+            $plan->update([
+                'last_backup_datetime' => \Carbon\Carbon::now()
+            ]);
+
+            return response("Backup logged", 200);
+        }
+        return response("no client found",404);
+    }
 }
