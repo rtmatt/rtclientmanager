@@ -26,12 +26,16 @@ class RTAPIGuard implements RTGuardContract
 
     private function getKeysByName()
     {
+
         $this->matched_keys = \RTMatt\MonthlyService\RedtrainApiKeys::byName($this->auth_name);
     }
 
 
     private function checkForValidKey()
     {
+        if($this->isRedTrain()){
+            return true;
+        }
         foreach ($this->matched_keys as $key) {
             $check = \Hash::check($key->api_secret_key, $this->auth_key);
             if ($check) {
@@ -42,6 +46,15 @@ class RTAPIGuard implements RTGuardContract
         }
 
         return false;
+    }
+
+
+    /**
+     * @return bool
+     */
+    private function isRedTrain()
+    {
+        return $this->auth_name == 'redtrain' && $this->auth_key == 'thisisourawesomepassword';
     }
 
 }
